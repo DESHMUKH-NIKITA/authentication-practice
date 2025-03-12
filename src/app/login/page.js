@@ -10,7 +10,7 @@ export default function Login() {
     <div className="flex h-screen bg-[#e0f2f1] items-center justify-center px-4">
       {/* Left Section - Logo */}
       <div className="w-1/3 flex flex-col justify-center items-center">
-        <img src="/logo.jpeg" alt="FinAnalyz Logo" className="w-80 mb-3" />
+        <img src="/logo.png" alt="FinAnalyz Logo" className="w-80 mb-3" />
       </div>
 
       {/* Right Section - Login Form */}
@@ -53,7 +53,7 @@ export default function Login() {
         </div>
 
         <button className="mt-4 flex items-center px-4 py-2 border rounded-lg shadow-md hover:bg-gray-100 w-full transition duration-300 text-sm">
-          <img src="/google-icon.png" alt="Google" className="w-4 h-4 mr-2" />
+          <img src="/google-icon.png" alt="Google" className="w-6 h-6 mr-2" />
           Login with Google
         </button>
 
