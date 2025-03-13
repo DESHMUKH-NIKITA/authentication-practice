@@ -7,7 +7,8 @@ export default function DashboardCards() {
     { title: 'Total Branches', count: '4', icon: <FaChartLine /> },
     { title: 'Total Leads', count: '4', icon: <FaMoneyBill /> },
     { title: 'Total Amount Disbursed', count: '₹ 2,00,000.00', icon: <FaMoneyBill /> },
-    { title: 'NPA Ratio', count: 'x.x%', icon: <FaChartLine /> }
+    { title: 'NPA Ratio', count: 'x.x%', icon: <FaChartLine /> },
+    { title: 'CRAR Ratio', count: 'x.x%', icon: <FaChartLine /> }
   ];
 
   return (

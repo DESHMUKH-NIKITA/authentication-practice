@@ -81,7 +81,7 @@ export default function Products() {
                   <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition">
                     <FaCog className="text-gray-600" />
                   </button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
+                  <button className="bg-gray-200 font-bold px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
                     Leads
                   </button>
                 </div>
