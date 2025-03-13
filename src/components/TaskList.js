@@ -1,35 +1,9 @@
 export default function FunnelChart() {
   const tasks = [
-    { title: "Pending Approval",count: 50,
-      color: "bg-teal-400",
-      border: "border-teal-400",
-      text: "text-teal-400",
-      width: "80%",
-    },
-    {
-      title: "Document Review",
-      count: 15,
-      color: "bg-blue-400",
-      border: "border-blue-400",
-      text: "text-blue-400",
-      width: "60%",
-    },
-    {
-      title: "Follow-ups",
-      count: 14,
-      color: "bg-yellow-400",
-      border: "border-yellow-400",
-      text: "text-yellow-400",
-      width: "45%",
-    },
-    {
-      title: "Escalation",
-      count: 12,
-      color: "bg-purple-400",
-      border: "border-purple-400",
-      text: "text-purple-400",
-      width: "32%",
-    },
+    { title: "Pending Approval", count: 50, color: "bg-teal-400", border: "border-teal-400", text: "text-teal-400", width: "90%" },
+    { title: "Document Review", count: 15, color: "bg-blue-400", border: "border-blue-400", text: "text-blue-400", width: "60%" },
+    { title: "Follow-ups", count: 14, color: "bg-yellow-400", border: "border-yellow-400", text: "text-yellow-400", width: "50%" },
+    { title: "Escalation", count: 12, color: "bg-purple-400", border: "border-purple-400", text: "text-purple-400", width: "45%" },
   ];
 
   return (
