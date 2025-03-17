@@ -33,7 +33,7 @@ export default function FunnelChart() {
 
               {/* Circle */}
               <div
-                className={`w-4 h-4 border-2 ${task.border} rounded-full flex items-center justify-center bg-white -ml-2`}
+                className={`w-4 h-4 border-2 ${task.border} rounded-full flex items-center justify-center bg-white -ml-0.5`}
               ></div>
 
               {/* Count */}
