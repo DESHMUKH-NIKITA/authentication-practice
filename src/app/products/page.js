@@ -2,8 +2,15 @@
 
 import Sidebar from '@/components/Sidebar';
 import { FaSearch, FaPlus, FaCog, FaEllipsisV } from 'react-icons/fa';
+import { useRouter } from 'next/navigation'; // ✅ Import the Next.js router
 
 export default function Products() {
+  const router = useRouter(); // ✅ Initialize the router
+
+  const handleCreateProduct = () => {
+    router.push('/create-product'); // ✅ Redirect to the create product page
+  };
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -51,11 +58,9 @@ export default function Products() {
         <div className="grid grid-cols-3 gap-6">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="bg-white p-6 ml-2 rounded-lg shadow-md relative">
-              {/* Three Dots Menu */}
               <div className="absolute top-4 right-4 cursor-pointer">
                 <FaEllipsisV className="text-gray-500" />
               </div>
-
               <h4 className="text-lg font-bold">Personal Loan</h4>
               <p className="text-gray-500 text-sm">Unsecured loan up to 3 lakhs</p>
 
