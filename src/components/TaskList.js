@@ -7,7 +7,7 @@ export default function FunnelChart() {
   ];
 
   return (
-    <div className="flex flex-col items-center p-8 bg-white shadow-md rounded-lg w-[450px]">
+    <div className="flex flex-col items-center p-8 bg-white shadow-md rounded-lg w-[350px]">
       <h3 className="text-xl font-semibold mb-6 text-left w-full">Task Lists</h3>
 
       <div className="flex flex-col items-center w-full">
