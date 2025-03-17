@@ -13,16 +13,16 @@ export default function Sidebar() {
       {/* Navigation Links */}
       <nav className="flex-1 space-y-2">
         <Link href="/dashboard" className="flex items-center p-3 rounded-lg hover:bg-gray-600 transition text-white !no-underline">
-          <FaHome className="mr-3 text-white" /> Dashboard
+          <img src="Dashboard.png" alt="Logout Icon" className="w-4 h-4 mr-3 text-white" /> Dashboard
         </Link>
         <Link href="/products" className="flex items-center p-3 rounded-lg hover:bg-gray-600 transition text-white !no-underline">
-          <FaBox className="mr-3" /> Products
+          <img src="Product_Dashboard.png" alt="Product_dashboard Icon" className="w-4 h-4 mr-3" /> Products 
         </Link>
       </nav>
 
       {/* Logout */}
-      <button className="mt-auto flex items-center p-3 rounded-lg hover:bg-red-600 transition">
-        <FaSignOutAlt className="mr-3" /> Logout
+      <button className="mt-auto flex items-center p-3 rounded-lg transition">
+        <img src="Logout.png" alt="Logout Icon" className="w-4 h-4 mr-3" /> Logout
       </button>
     </div>
   );

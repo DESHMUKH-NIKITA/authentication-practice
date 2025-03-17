@@ -17,33 +17,38 @@ export default function Products() {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 bg-gray-100 h-screen">
+      <div className="flex-1 ml-64 bg-gray-100 min-h-screen">
         {/* Navbar */}
         <div className="w-full top-0 left-0 right-0 bg-white shadow-md flex justify-between items-center px-6 py-3 h-14">
+          {/* Title */}
           <h4 className="text-lg font-semibold text-gray-800">Products</h4>
-          <div className="flex items-center space-x-3">
-            <span className="text-sm font-medium text-gray-700">Username</span>
-            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold">
-              N
+
+          {/* User Section */}
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold">
+              <img src="Username.png" alt="Icon" className="w-6 h-6" />
             </div>
+            <span className="text-sm font-medium text-gray-700">Username</span>
           </div>
         </div>
 
+
         {/* Search & Create Product Section */}
-        <div className="flex items-center bg-white p-2 shadow-md rounded-lg mt-10 mb-4">
-          <div className="flex items-center flex-grow bg-gray-100 p-2 rounded-lg">
-            <FaSearch className="text-gray-500 mx-2" />
+        <div className="flex items-center bg-white p-2 shadow-md rounded-lg mt-10 mb-4 gap-x-4">
+          {/* Search Bar */}
+          <div className="flex items-center flex-grow bg-gray-100 p-2 rounded-lg border border-gray-300">
             <input
               type="text"
               placeholder="Search by product name, loan type or status"
-              className="w-full bg-transparent outline-none text-sm"
+              className="w-full bg-transparent outline-none text-sm px-3"
             />
+            <FaSearch className="text-gray-500 mx-2" />
           </div>
 
-          {/* ✅ Redirect on button click */}
+          {/* Button  */}
           <button
-            onClick={handleCreateProduct}
-            className="ml-2 flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+            className="ml-4 flex items-center bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition"
+            style={{ borderRadius: "8px" }}  // Explicitly set border radius
           >
             <FaPlus className="mr-2" /> Create New Product
           </button>
@@ -87,7 +92,7 @@ export default function Products() {
                   <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition">
                     <FaCog className="text-gray-600" />
                   </button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
+                  <button className="bg-gray-200 font-bold px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
                     Leads
                   </button>
                 </div>
