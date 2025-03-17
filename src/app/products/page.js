@@ -2,8 +2,15 @@
 
 import Sidebar from '@/components/Sidebar';
 import { FaSearch, FaPlus, FaCog, FaEllipsisV } from 'react-icons/fa';
+import { useRouter } from 'next/navigation'; // ✅ Import the Next.js router
 
 export default function Products() {
+  const router = useRouter(); // ✅ Initialize the router
+
+  const handleCreateProduct = () => {
+    router.push('/create-product'); // ✅ Redirect to the create product page
+  };
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -13,10 +20,7 @@ export default function Products() {
       <div className="flex-1 ml-64 bg-gray-100 h-screen">
         {/* Navbar */}
         <div className="w-full top-0 left-0 right-0 bg-white shadow-md flex justify-between items-center px-6 py-3 h-14">
-          {/* Title */}
-          <h4 className="text-lg font-semibold text-gray-800">Products</h4> 
-
-          {/* User Section */}
+          <h4 className="text-lg font-semibold text-gray-800">Products</h4>
           <div className="flex items-center space-x-3">
             <span className="text-sm font-medium text-gray-700">Username</span>
             <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold">
@@ -28,15 +32,19 @@ export default function Products() {
         {/* Search & Create Product Section */}
         <div className="flex items-center bg-white p-2 shadow-md rounded-lg mt-10 mb-4">
           <div className="flex items-center flex-grow bg-gray-100 p-2 rounded-lg">
-            <FaSearch className="text-gray-500 mx-2"/>
-            <input 
-              type="text" 
-              placeholder="Search by product name, loan type or status" 
+            <FaSearch className="text-gray-500 mx-2" />
+            <input
+              type="text"
+              placeholder="Search by product name, loan type or status"
               className="w-full bg-transparent outline-none text-sm"
             />
           </div>
 
-          <button className="ml-2 flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+          {/* ✅ Redirect on button click */}
+          <button
+            onClick={handleCreateProduct}
+            className="ml-2 flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+          >
             <FaPlus className="mr-2" /> Create New Product
           </button>
         </div>
@@ -45,11 +53,9 @@ export default function Products() {
         <div className="grid grid-cols-3 gap-6">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="bg-white p-6 ml-2 rounded-lg shadow-md relative">
-              {/* Three Dots Menu */}
               <div className="absolute top-4 right-4 cursor-pointer">
                 <FaEllipsisV className="text-gray-500" />
               </div>
-
               <h4 className="text-lg font-bold">Personal Loan</h4>
               <p className="text-gray-500 text-sm">Unsecured loan up to 3 lakhs</p>
 
