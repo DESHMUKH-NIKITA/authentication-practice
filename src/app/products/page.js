@@ -47,6 +47,7 @@ export default function Products() {
 
           {/* Button  */}
           <button
+            onClick={handleCreateProduct} // ✅ Call the function here
             className="ml-4 flex items-center bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition"
             style={{ borderRadius: "8px" }}  // Explicitly set border radius
           >
