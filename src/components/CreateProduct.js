@@ -1,15 +1,17 @@
 'use client';
 import Sidebar from '@/components/Sidebar';
 import { useState } from 'react';
-import { FaArrowLeft, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowLeft, FaInfoCircle, FaEdit } from 'react-icons/fa';
 
 export default function CreateProduct() {
-    const [step, setStep] = useState(1);
-    const [productType, setProductType] = useState('');
-    const [customerType, setCustomerType] = useState('');
-    const [loanTemplate, setLoanTemplate] = useState('');
-    const [productName, setProductName] = useState('');
-    const [productDescription, setProductDescription] = useState('');
+    const [step, setStep] = useState(5);
+    const [productType, setProductType] = useState('Personal Loan - Secured');
+    const [customerType, setCustomerType] = useState('Individual');
+    const [loanTemplate, setLoanTemplate] = useState('Standard Loan Process (Default)');
+    const [productName, setProductName] = useState('Product Name1');
+    const [productDescription, setProductDescription] = useState(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    );
 
     const handleNext = () => {
         if (step < 5) setStep(step + 1);
@@ -17,6 +19,9 @@ export default function CreateProduct() {
 
     const handleBack = () => {
         if (step > 1) setStep(step - 1);
+    };
+    const handleEdit = (editStep) => {
+        setStep(editStep);
     };
 
     return (
@@ -50,12 +55,12 @@ export default function CreateProduct() {
                 </div>
 
                 {/* Step Content */}
-                <div className="flex items-center bg-white p-4 rounded-lg shadow-md mx-6">
+                <div className="flex items-center bg-white p-6 rounded-lg shadow-md mx-10">
                     {/* Step 1: Product Type */}
                     {step === 1 && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-4">Please select the product type</h2>
-                            <div className="space-y-8">
+                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
+                            <div className="space-y-6">
                                 {[
                                     'Personal Loan - Secured',
                                     'Personal Loan - Unsecured',
@@ -64,19 +69,39 @@ export default function CreateProduct() {
                                     'Loan type 5',
                                     'Loan type 6',
                                 ].map((type) => (
-                                    <label key={type}>
+                                    <label key={type} className="block cursor-pointer">
                                         <input
                                             type="radio"
                                             name="productType"
                                             value={type}
                                             checked={productType === type}
                                             onChange={(e) => setProductType(e.target.value)}
+                                            className="hidden"
+
 
                                         />
-                                        {type}
-                                        <br></br>
-                                        <p className="text-sm text-gray-500 ">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.                                         </p>
+                                        <div className="flex items-center gap-3"> {/* ✅ Fixed alignment and spacing */}
+                                            {/* Custom Radio Button */}
+
+                                            <div
+                                                className={`w-5 h-5 border-2 rounded-full ${productType === type ? 'border-black' : 'border-gray-400'
+                                                    } flex items-center justify-center`}
+                                            >
+                                                {productType === type && (
+                                                    <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                )}
+
+                                            </div>
+                                            <span className="text-lg font-medium">{type}</span>
+
+                                        </div>
+
+                                        {/* Text */}
+                                        <div>
+                                            <p className="text-sm text-gray-500 mt-1 px-9">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
                                     </label>
                                 ))}
                             </div>
@@ -86,58 +111,97 @@ export default function CreateProduct() {
                     {/* Step 2: Customer Type */}
                     {step === 2 && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-4">Please select the customer type</h2>
-                            <label className={`block border p-4 rounded-lg cursor-pointer ${customerType === 'Individual' ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-100'}`}>
-                                <input
-                                    type="radio"
-                                    name="customerType"
-                                    value="Individual"
-                                    checked={customerType === 'Individual'}
-                                    onChange={() => setCustomerType('Individual')}
-                                    className="mr-3"
-                                />
-                                Individual
-                            </label>
-                            <label className={`block border p-4 rounded-lg cursor-pointer ${customerType === 'Business' ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-100'}`}>
-                                <input
-                                    type="radio"
-                                    name="customerType"
-                                    value="Business"
-                                    checked={customerType === 'Business'}
-                                    onChange={() => setCustomerType('Business')}
-                                    className="mr-3"
-                                />
-                                Business
-                            </label>
+                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
+                            <div className="space-y-6">
+                                {[
+                                    'Individual',
+                                    'Business',
+
+                                ].map((type) => (
+                                    <label key={type} className="block cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="customerType"
+                                            value={type}
+                                            checked={customerType === type}
+                                            onChange={(e) => setcustomerType(e.target.value)}
+                                            className="hidden"
+
+
+                                        />
+                                        <div className="flex items-center gap-3">
+
+                                            {/* Custom Radio Button */}
+                                            <div
+                                                className={`w-5 h-5 border-2 rounded-full ${customerType === type ? 'border-black' : 'border-gray-400'
+                                                    } flex items-center justify-center mt-1`}
+                                            >
+                                                {customerType === type && (
+                                                    <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                )}
+                                            </div>
+                                            <span className="text-lg font-medium">{type}</span>
+
+
+                                        </div>
+                                        {/* Text */}
+                                        <div>
+                                            <p className="text-sm text-gray-500 mt-1 px-9">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
                     )}
 
                     {/* Step 3: Loan Template */}
                     {step === 3 && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-4">Please select the loan template</h2>
-                            <label className={`block border p-4 rounded-lg cursor-pointer ${loanTemplate === 'Default' ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-100'}`}>
-                                <input
-                                    type="radio"
-                                    name="loanTemplate"
-                                    value="Default"
-                                    checked={loanTemplate === 'Default'}
-                                    onChange={() => setLoanTemplate('Default')}
-                                    className="mr-3"
-                                />
-                                Default Template <FaInfoCircle className="inline ml-2" />
-                            </label>
-                            <label className={`block border p-4 rounded-lg cursor-pointer ${loanTemplate === 'Custom' ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-100'}`}>
-                                <input
-                                    type="radio"
-                                    name="loanTemplate"
-                                    value="Custom"
-                                    checked={loanTemplate === 'Custom'}
-                                    onChange={() => setLoanTemplate('Custom')}
-                                    className="mr-3"
-                                />
-                                Custom Loan <FaInfoCircle className="inline ml-2" />
-                            </label>
+                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
+                            <div className="space-y-6">
+                                {[
+                                    'Default',
+                                    'Custom',
+
+                                ].map((template) => (
+                                    <label key={template} className="block cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="productType"
+                                            value={template}
+                                            checked={loanTemplate === template}
+                                            onChange={() => setLoanTemplate(template)}
+                                            className="hidden"
+
+
+                                        />
+                                        <div className="flex items-start space-x-3">
+
+                                            {/* Custom Radio Button */}
+                                            <div
+                                                className={`w-5 h-5 border-2 rounded-full ${loanTemplate === template ? 'border-black' : 'border-gray-400'
+                                                    } flex items-center justify-center mt-1`}
+                                            >
+                                                {loanTemplate === template && (
+                                                    <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                )}
+                                            </div>
+                                            <span className="text-lg font-medium">{template} Template</span>
+                                            <FaInfoCircle className="inline ml-2 text-gray-400" />
+
+                                        </div>
+                                        {/* Text */}
+                                        <div>
+
+                                            <p className="text-sm text-gray-500 mt-1 px-9">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
                     )}
 
@@ -161,14 +225,99 @@ export default function CreateProduct() {
                         </div>
                     )}
 
+                    {/* Step Content */}
+                    {/* <div className="flex items-center bg-white p-6 rounded-lg shadow-md mx-10"> */}
                     {/* Step 5: Review */}
                     {step === 5 && (
-                        <div>
-                            <h2 className="text-lg font-semibold mb-4">Please review & confirm the details</h2>
-                            {/* Display data */}
+                        <div className="w-full">
+                            {/* <button onClick={handleBack} className="flex items-center text-blue-500 mb-4">
+                                <FaArrowLeft className="mr-2" /> Back
+                            </button> */}
+
+                            <h2 className="text-lg font-semibold mb-6">Please review & confirm the details</h2>
+
+                            {/* Product Type */}
+                            <div className="mb-6">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-gray-700 font-medium">Product Type</label>
+                                    <button onClick={() => handleEdit(1)} className="flex items-center text-blue-500">
+                                        <FaEdit className="mr-1" /> Edit
+                                    </button>
+                                </div>
+                                <input
+                                    type="text"
+                                    value={productType}
+                                    readOnly
+                                    className="border bg-gray-100 w-full px-4 py-2 mt-2 rounded-lg"
+                                />
+                            </div>
+
+                            {/* Customer Type */}
+                            <div className="mb-6">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-gray-700 font-medium">Customer Type</label>
+                                    <button onClick={() => handleEdit(2)} className="flex items-center text-blue-500">
+                                        <FaEdit className="mr-1" /> Edit
+                                    </button>
+                                </div>
+                                <input
+                                    type="text"
+                                    value={customerType}
+                                    readOnly
+                                    className="border bg-gray-100 w-full px-4 py-2 mt-2 rounded-lg"
+                                />
+                            </div>
+
+                            {/* Loan Template */}
+                            <div className="mb-6">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-gray-700 font-medium">Loan Template</label>
+                                    <button onClick={() => handleEdit(3)} className="flex items-center text-blue-500">
+                                        <FaEdit className="mr-1" /> Edit
+                                    </button>
+                                </div>
+                                <input
+                                    type="text"
+                                    value={loanTemplate}
+                                    readOnly
+                                    className="border bg-gray-100 w-full px-4 py-2 mt-2 rounded-lg"
+                                />
+                            </div>
+
+                            {/* Product Name */}
+                            <div className="mb-6">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-gray-700 font-medium">Product Name</label>
+                                    <button onClick={() => handleEdit(4)} className="flex items-center text-blue-500">
+                                        <FaEdit className="mr-1" /> Edit
+                                    </button>
+                                </div>
+                                <input
+                                    type="text"
+                                    value={productName}
+                                    readOnly
+                                    className="border bg-gray-100 w-full px-4 py-2 mt-2 rounded-lg"
+                                />
+                            </div>
+
+                            {/* Product Description */}
+                            <div className="mb-6">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-gray-700 font-medium">Product Description</label>
+                                    <button onClick={() => handleEdit(4)} className="flex items-center text-blue-500">
+                                        <FaEdit className="mr-1" /> Edit
+                                    </button>
+                                </div>
+                                <textarea
+                                    value={productDescription}
+                                    readOnly
+                                    className="border bg-gray-100 w-full px-4 py-2 mt-2 rounded-lg h-24"
+                                />
+                            </div>
                         </div>
                     )}
                 </div>
+                {/* </div> */}
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between px-6 mt-6">
@@ -178,10 +327,10 @@ export default function CreateProduct() {
                     {step < 5 ? (
                         <button onClick={handleNext} className="bg-green-500 text-white py-2 px-4 rounded-lg">Continue →</button>
                     ) : (
-                        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
+                        <button className="bg-green-500 text-white py-2 px-4 rounded-lg">Submit</button>
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
