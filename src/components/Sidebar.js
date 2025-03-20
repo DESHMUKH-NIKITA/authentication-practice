@@ -24,7 +24,7 @@ export default function Sidebar() {
         <Link href="/rule_engine" className="flex items-center p-3 rounded-lg hover:bg-gray-600 transition text-white !no-underline">
           <img src="ruleEngine.png" alt="Rule Engine Icon" className="w-6 h-6 mr-2 -ml-2" /> Rule Engine
         </Link>
-        <Link href="/settings" className="flex items-center p-3 rounded-lg hover:bg-gray-600 transition text-white !no-underline">
+        <Link href="/account-settings" className="flex items-center p-3 rounded-lg hover:bg-gray-600 transition text-white !no-underline">
           <img src="setting.png" alt="Settings Icon" className="w-6 h-6 mr-2 -ml-2" /> Settings
         </Link>
       </nav>
