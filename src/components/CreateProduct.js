@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaArrowLeft, FaInfoCircle, FaEdit } from 'react-icons/fa';
 
 export default function CreateProduct() {
-    const [step, setStep] = useState(5);
+    const [step, setStep] = useState(1);
     const [productType, setProductType] = useState('Personal Loan - Secured');
     const [customerType, setCustomerType] = useState('Individual');
     const [loanTemplate, setLoanTemplate] = useState('Standard Loan Process (Default)');
@@ -60,15 +60,39 @@ export default function CreateProduct() {
                     {step === 1 && (
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
-                            <div className="space-y-6">
+                            <div className="space-y-3">
                                 {[
-                                    'Personal Loan - Secured',
-                                    'Personal Loan - Unsecured',
-                                    'Business Loan - Secured',
-                                    'Business Loan - Unsecured',
-                                    'Loan type 5',
-                                    'Loan type 6',
-                                ].map((type) => (
+                                    {
+                                        type: 'Personal Loan - Secured',
+                                        description:
+                                            "A Personal Loan - Secured is a type of loan where the borrower pledges an asset as collateral to secure the loan. This reduces the lender's risk, often resulting in lower interest rates and higher loan amounts compared to unsecured personal loans.",
+                                    },
+                                    {
+                                        type: 'Personal Loan - Unsecured',
+                                        description:
+                                            "A Personal Loan - Unsecured does not require any collateral, making it ideal for those who do not wish to risk their assets. These loans often have higher interest rates due to the increased risk to the lender.",
+                                    },
+                                    {
+                                        type: 'Business Loan - Secured',
+                                        description:
+                                            "A Business Loan - Secured allows businesses to access higher loan amounts at lower interest rates by pledging assets such as property, inventory, or equipment as collateral.",
+                                    },
+                                    {
+                                        type: 'Business Loan - Unsecured',
+                                        description:
+                                            "A Business Loan - Unsecured provides funds without requiring collateral, making it suitable for businesses with strong credit histories seeking quick access to capital.",
+                                    },
+                                    {
+                                        type: 'Loan type 5',
+                                        description:
+                                            "Loan type 5 is a specialized loan product tailored for unique financial needs. Contact our support team for more details.",
+                                    },
+                                    {
+                                        type: 'Loan type 6',
+                                        description:
+                                            "Loan type 6 offers flexible terms and competitive rates to help you meet your financial goals with ease.",
+                                    },
+                                ].map(({ type, description }) => (
                                     <label key={type} className="block cursor-pointer">
                                         <input
                                             type="radio"
@@ -77,12 +101,8 @@ export default function CreateProduct() {
                                             checked={productType === type}
                                             onChange={(e) => setProductType(e.target.value)}
                                             className="hidden"
-
-
                                         />
-                                        <div className="flex items-center gap-3"> {/* ✅ Fixed alignment and spacing */}
-                                            {/* Custom Radio Button */}
-
+                                        <div className="flex items-center gap-3">
                                             <div
                                                 className={`w-5 h-5 border-2 rounded-full ${productType === type ? 'border-black' : 'border-gray-400'
                                                     } flex items-center justify-center`}
@@ -90,21 +110,18 @@ export default function CreateProduct() {
                                                 {productType === type && (
                                                     <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
                                                 )}
-
                                             </div>
                                             <span className="text-lg font-medium">{type}</span>
-
                                         </div>
 
-                                        {/* Text */}
+                                        {/* Description */}
                                         <div>
-                                            <p className="text-sm text-gray-500 mt-1 px-9">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            </p>
+                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
                                         </div>
                                     </label>
                                 ))}
                             </div>
+
                         </div>
                     )}
 
@@ -112,12 +129,19 @@ export default function CreateProduct() {
                     {step === 2 && (
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
-                            <div className="space-y-6">
+                            <div className="space-y-3">
                                 {[
-                                    'Individual',
-                                    'Business',
-
-                                ].map((type) => (
+                                    {
+                                        type: 'Individual',
+                                        description:
+                                            'An Individual loan is tailored for personal financial needs. It is ideal for expenses like education, medical emergencies, home renovations, or personal ventures.',
+                                    },
+                                    {
+                                        type: 'Business',
+                                        description:
+                                            'A Business loan is designed to support companies and entrepreneurs with capital for expansion, equipment purchases, working capital, or other business-related expenses.',
+                                    },
+                                ].map(({ type, description }) => (
                                     <label key={type} className="block cursor-pointer">
                                         <input
                                             type="radio"
@@ -126,11 +150,8 @@ export default function CreateProduct() {
                                             checked={customerType === type}
                                             onChange={(e) => setcustomerType(e.target.value)}
                                             className="hidden"
-
-
                                         />
                                         <div className="flex items-center gap-3">
-
                                             {/* Custom Radio Button */}
                                             <div
                                                 className={`w-5 h-5 border-2 rounded-full ${customerType === type ? 'border-black' : 'border-gray-400'
@@ -141,18 +162,16 @@ export default function CreateProduct() {
                                                 )}
                                             </div>
                                             <span className="text-lg font-medium">{type}</span>
-
-
                                         </div>
-                                        {/* Text */}
+
+                                        {/* Description */}
                                         <div>
-                                            <p className="text-sm text-gray-500 mt-1 px-9">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            </p>
+                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
                                         </div>
                                     </label>
                                 ))}
                             </div>
+
                         </div>
                     )}
 
@@ -162,10 +181,17 @@ export default function CreateProduct() {
                             <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
                             <div className="space-y-6">
                                 {[
-                                    'Default',
-                                    'Custom',
-
-                                ].map((template) => (
+                                    {
+                                        template: 'Default',
+                                        description:
+                                            'The Default Template provides a standardized loan structure with pre-set terms and conditions, ensuring a quick and easy application process.',
+                                    },
+                                    {
+                                        template: 'Custom',
+                                        description:
+                                            'The Custom Template allows you to tailor loan terms and conditions according to specific needs, offering flexibility in structuring your loan.',
+                                    },
+                                ].map(({ template, description }) => (
                                     <label key={template} className="block cursor-pointer">
                                         <input
                                             type="radio"
@@ -174,11 +200,8 @@ export default function CreateProduct() {
                                             checked={loanTemplate === template}
                                             onChange={() => setLoanTemplate(template)}
                                             className="hidden"
-
-
                                         />
                                         <div className="flex items-start space-x-3">
-
                                             {/* Custom Radio Button */}
                                             <div
                                                 className={`w-5 h-5 border-2 rounded-full ${loanTemplate === template ? 'border-black' : 'border-gray-400'
@@ -190,18 +213,15 @@ export default function CreateProduct() {
                                             </div>
                                             <span className="text-lg font-medium">{template} Template</span>
                                             <FaInfoCircle className="inline ml-2 text-gray-400" />
-
                                         </div>
                                         {/* Text */}
                                         <div>
-
-                                            <p className="text-sm text-gray-500 mt-1 px-9">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            </p>
+                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
                                         </div>
                                     </label>
                                 ))}
                             </div>
+
                         </div>
                     )}
 
