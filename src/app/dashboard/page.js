@@ -15,7 +15,6 @@ export default function Dashboard() {
           <TaskList />
         </div>
       </div>
-
       {/* Loan Table Below */}
       <LoanTable />
     </Layout>
