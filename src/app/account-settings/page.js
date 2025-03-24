@@ -57,7 +57,7 @@ export default function AccountSettings() {
           </div>
         </div>
         <div className="flex-grow p-6 bg-gray-100 overflow-y-auto">
-          <div className="flex">
+          <div className="flex ">
             <LeftMenu />
             <div className="flex-grow bg-white rounded-lg shadow p-6">
               {/* Header Section */}
