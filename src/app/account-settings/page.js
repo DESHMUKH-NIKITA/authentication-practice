@@ -90,7 +90,7 @@ export default function AccountSettings() {
 
               {/* Basic Details */}
               <div className="mb-3 -mt-5 ml-5">
-                <h4 className="text-lg font-medium mb-2">Basic Details</h4>
+                <h5 className="text-lg font-medium mb-2">Basic Details</h5>
                 <div className="grid grid-cols-2 gap-x-10 gap-y-4">
                   {['address', 'city', 'state', 'country', 'pincode'].map((field) => (
                     <div key={field}>
@@ -107,7 +107,7 @@ export default function AccountSettings() {
 
               {/* Authorized User */}
               <div className="mb-3 ml-5">
-                <h4 className="text-lg font-medium mb-2">Authorized User</h4>
+                <h5 className="text-lg font-medium mb-2">Authorized User</h5>
                 <div className="grid grid-cols-2 gap-x-10 gap-y-4">
                   {['userName', 'email', 'mobileNumber'].map((field) => (
                     <div key={field}>
