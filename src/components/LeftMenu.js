@@ -1,9 +1,7 @@
 'use client';
 
-// import { useRouter, usePathname } from 'next/navigation';
-// import { usePathname, useRouter } from 'next/navigation';
 import { useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
 export default function LeftMenu() {
   const router = useRouter();
