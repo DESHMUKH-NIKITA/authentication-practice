@@ -1,8 +1,8 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+// import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+// import { useState, useEffect } from 'react';
 
 export default function LeftMenu() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function LeftMenu() {
   const userManagementRoutes = ['/user-management', '/add-new-user', '/add-new-role'];
 
   return (
-    <div className="w-1/1.8 bg-white rounded-lg shadow p-4 mr-6 container-left">
+    <div className="w-1/3 bg-white rounded-lg shadow p-2 mr-6 ml-60">
       <ul className="space-y-2">
         {menuItems.map((item) => {
           const isActive = 
