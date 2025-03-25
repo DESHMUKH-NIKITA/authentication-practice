@@ -103,7 +103,7 @@ export default function Login() {
         </form>
 
         {/* ✅ Show Message */}
-        {message && <p className="text-center text-red-500 mt-2">{message}</p>}
+        {message && <p className="text-center text-green-500 mt-2">{message}</p>}
 
         <div className="mt-4 flex items-center">
           <hr className="flex-grow border-gray-300" />
