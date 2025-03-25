@@ -15,6 +15,10 @@ export default function CommunicationTemplate() {
     setTemplatePreview(topic);
   };
 
+  const handleBack = () => {
+    setShowForm(false);  // Assuming showForm is the state controlling the form view
+  };
+
   return (
     <div className="flex h-screen overflow-x-hidden">
       <Sidebar />
@@ -91,9 +95,15 @@ export default function CommunicationTemplate() {
               )}
 
               {showForm && !templatePreview && (
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h2 className="text-xl font-bold mb-4">Create Template</h2>
-                  <p className="text-gray-500 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div className="bg-white p-3">
+                  {/* Back Arrow */}
+                  <div className="flex items-center mb-2">
+                    <button onClick={handleBack} className="text-gray-700 hover:text-black transition">
+                      <ArrowLeft size={24} className="cursor-pointer" />
+                    </button>
+                    <h4 className="text-xl font-bold ml-4">Create Template</h4>
+                  </div>
+                  <p className="text-gray-500 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                   <form className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Template Name</label>
@@ -114,7 +124,10 @@ export default function CommunicationTemplate() {
                       <label className="block text-sm font-medium text-gray-700">Template Preview</label>
                       <div className="flex items-center space-x-2">
                         <input type="text" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Message Topic" />
-                        <button type="button" onClick={handlePreview} className="bg-gray-200 px-3 py-2 rounded-lg text-sm">Preview</button>
+                        <button type="button" onClick={handlePreview} className="bg-gray-200 px-6 py-2 rounded-lg text-sm flex items-center space-x-2">
+                          <img src="Preview-icon.png" alt="Preview Icon" className="w-3 h-3 -ml-3" />
+                          <span>Preview</span>
+                        </button>
                       </div>
                     </div>
                     <div className="flex justify-end">
