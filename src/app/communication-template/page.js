@@ -11,8 +11,12 @@ export default function CommunicationTemplate() {
 
   const handlePreview = (e) => {
     e.preventDefault();
-    const topic = e.target.form[3].value;
-    setTemplatePreview(topic);
+    const input = e.target.closest('div').querySelector('[name="templatePreview"]');
+    if (input) {
+      setTemplatePreview(input.value);
+    } else {
+      console.error('Template preview input not found');
+    }
   };
 
   const handleBack = () => {
@@ -123,7 +127,7 @@ export default function CommunicationTemplate() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Template Preview</label>
                       <div className="flex items-center space-x-2">
-                        <input type="text" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Message Topic" />
+                        <input type="text" name="templatePreview" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Message Topic" />
                         <button type="button" onClick={handlePreview} className="bg-gray-200 px-6 py-2 rounded-lg text-sm flex items-center space-x-2">
                           <img src="Preview-icon.png" alt="Preview Icon" className="w-3 h-3 -ml-3" />
                           <span>Preview</span>
