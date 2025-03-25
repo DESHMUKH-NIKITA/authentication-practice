@@ -35,7 +35,7 @@ export default function CommunicationTemplate() {
         <div className="flex-grow p-6 bg-gray-100 overflow-y-auto">
           <div className="flex">
             <LeftMenu />
-            <div className="flex-grow bg-white rounded-lg shadow p-6 mr-6">
+            <div className="flex-grow bg-white rounded-lg shadow p-4 mr-6">
               {!showForm && !templatePreview && (
                 <>
                   <div className="flex justify-between items-center mb-2">
