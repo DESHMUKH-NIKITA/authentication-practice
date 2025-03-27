@@ -57,12 +57,12 @@ export default function AccountSettings() {
                 {/* Conditional Button */}
                 {activeTab === 'users' ? (
                   <button onClick={handleAddUser} className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition flex items-center btn-user">
-                    <PlusCircle className="w-5 h-5 mr-2" />
+                    <PlusCircle className="w-5.2 h-5 mr-2" />
                     <span className="whitespace-nowrap">Add User</span>  
                   </button>
                 ) : (
                   <button onClick={handleAddRole} className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition flex items-center btn-user">
-                    <PlusCircle className="w-5 h-5 mr-2" />
+                    <PlusCircle className="w-5.2 h-5 mr-2" />
                     <span className="whitespace-nowrap">Add Role</span>  
                   </button>
                 )}
@@ -85,7 +85,7 @@ export default function AccountSettings() {
               </div>
 
               {/* Table Section */}
-              <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="bg-white  ">
                 {activeTab === 'users' ? (
                   <table className="min-w-full text-sm">
                     <thead className="bg-gray-100 text-gray-700">
