@@ -40,9 +40,12 @@ body {
 }
 
 .form{
-
-    margin: 205px;
+    margin: 68px;
     position: relative;
-    bottom: 202px;
-    right: 192px;
+    bottom: 70px;
+    right: 58px;
+}
+
+.no-underline-custom {
+  text-decoration: none !important;
 }
