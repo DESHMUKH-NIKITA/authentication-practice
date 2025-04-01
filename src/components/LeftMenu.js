@@ -1,7 +1,7 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-//import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+// import { useState, useEffect } from 'react';
 
 export default function LeftMenu() {
   const router = useRouter();
@@ -22,10 +22,13 @@ export default function LeftMenu() {
   ];
 
   const userManagementRoutes = ['/user-management', '/add-new-user', '/add-new-role'];
-
+//container left
   return (
-    <div className="w-1/1.8 bg-white rounded-lg shadow p-4 mr-6 container-left">
-      <ul className="space-y-2">
+    <div 
+     className="bg-white rounded-lg shadow p-4 mr-2 ml-[7px] w-[340px] h-[687px]"
+    //style={{ marginLeft: '7px', width: '340px', height: '687px' }}
+  >
+      <ul className="space-x-4">
         {menuItems.map((item) => {
           const isActive = 
             pathname === item.path || 
@@ -35,7 +38,7 @@ export default function LeftMenu() {
             <li
               key={item.path}
               onClick={() => navigateTo(item.path)}
-              className={`cursor-pointer transition px-4 py-2 rounded-lg ${
+              className={`cursor-pointer transition px-4 py-2 rounded-lg whitespace-nowrap ${
                 isActive
                   ? 'bg-blue-100 text-black-600 font-semibold'  // Active item with blue background
                   : 'text-gray-600 hover:text-blue-600 hover:bg-black-50 transition'  // Inactive with hover effect

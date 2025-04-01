@@ -1,21 +1,28 @@
-import Sidebar from '@/components/Sidebar';
-import Navbar from '@/components/Navbar';
+"use client";
+import { useState } from "react";
+import Sidebar from "@/components/Sidebar";
 
 export default function Layout({ children }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed((prev) => !prev);
+  };
+
   return (
-    <div className="flex">
-      {/* Sidebar (Full Height) */}
-      <Sidebar />
+    <div className="flex h-screen">
+      {/* Sidebar with collapse functionality */}
+      <Sidebar onToggle={toggleSidebar} isCollapsed={isCollapsed} />
 
-      <div className="flex-1">
-        {/* Navbar */}
-        <Navbar />
-
-      {/* Main Content (Takes Remaining Space) */}
-      <div className="ml-64 flex-1 p-6 bg-gray-100 min-h-screen">
-        {children}
+      <div className="flex-1 flex flex-col transition-all duration-300">
+        {/* Main Content */}
+        <div
+          className={`p-1 bg-gray-100 min-h-screen transition-all duration-300
+            ${isCollapsed ? "ml-20" : "ml-64"}`}
+        >
+          {children}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
