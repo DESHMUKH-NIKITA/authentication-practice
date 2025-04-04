@@ -1,10 +1,52 @@
 "use client";
 
 import { useState } from "react";
+import { Search } from "lucide-react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
+const StatusDropdown = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedStatus, setSelectedStatus] = useState("Change Status");
 
+    const statuses = [
+        { label: "Under Review", color: "text-yellow-500" },
+        { label: "Approved", color: "text-green-500" },
+        { label: "Rejected", color: "text-red-500" },
+        { label: "Pending Document", color: "text-orange-500" },
+        { label: "Disbursed", color: "text-black" },
+    ];
 
+    const handleSelect = (status) => {
+        setSelectedStatus(status.label);
+        setIsOpen(false);
+    };
+
+    return (
+        <div className="relative w-48">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full px-3 py-2 border border-gray-300 bg-white rounded-md flex justify-between items-center"
+            >
+                <span>{selectedStatus}</span>
+                <span>▼</span>
+            </button>
+
+            {isOpen && (
+                <ul className="absolute w-full mt-1 border border-gray-300 bg-white rounded-md shadow-md z-10">
+                    {statuses.map((status) => (
+                        <li
+                            key={status.label}
+                            onClick={() => handleSelect(status)}
+                            className={`px-3 py-2 cursor-pointer hover:bg-gray-100 ${status.color}`}
+                        >
+                            {status.label}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
 
 export default function CustomerLoanTabs() {
     const [activeTab, setActiveTab] = useState("Summary");
@@ -221,27 +263,27 @@ function ProfileContent() {
             <div className="grid grid-cols-3 gap-6 text-gray-700 mb-6">
                 <div>
                     <label className="text-sm text-gray-600">Name</label>
-                    <span className="text-lg block font-semibold">Customer Name</span>
+                    <span className="text-[15px] block font-semibold">Customer Name</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">DOB</label>
-                    <span className="text-lg block font-semibold">21/03/1993</span>
+                    <span className="text-[15px] block font-semibold">21/03/1993</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Phone Number</label>
-                    <span className="text-lg block font-semibold">1234567890</span>
+                    <span className="text-[15px] block font-semibold">1234567890</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">PAN Number</label>
-                    <span className="text-lg block font-semibold">xxxxxxx</span>
+                    <span className="text-[15px] block font-semibold">xxxxxxx</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Aadhaar Number</label>
-                    <span className="text-lg block font-semibold">xxxxxxxxxx</span>
+                    <span className="text-[15px] block font-semibold">xxxxxxxxxx</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Email</label>
-                    <span className="text-lg block font-semibold">email123@gmail.com</span>
+                    <span className="text-[15px] block font-semibold">email123@gmail.com</span>
                 </div>
             </div>
 
@@ -250,23 +292,23 @@ function ProfileContent() {
             <div className="grid grid-cols-3 gap-6 text-gray-700 mb-6">
                 <div>
                     <label className="text-sm text-gray-600">Employment Type</label>
-                    <span className="text-lg block font-semibold">Individual / Business</span>
+                    <span className="text-[15px] block font-semibold">Individual / Business</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Company Name</label>
-                    <span className="text-lg block font-semibold">ABC Company</span>
+                    <span className="text-[15px] block font-semibold">ABC Company</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Monthly Income</label>
-                    <span className="text-lg block font-semibold">₹ 2,00,000.00</span>
+                    <span className="text-[15px] block font-semibold">₹ 2,00,000.00</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Total Work Experience</label>
-                    <span className="text-lg block font-semibold">6 years</span>
+                    <span className="text-[15px] block font-semibold">6 years</span>
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Company Email</label>
-                    <span className="text-lg block font-semibold">company123@gmail.com</span>
+                    <span className="text-[15px] block font-semibold">company123@gmail.com</span>
                 </div>
             </div>
 
@@ -275,7 +317,7 @@ function ProfileContent() {
             <div className="grid grid-cols-3 gap-6 text-gray-700">
                 <div>
                     <label className="text-sm text-gray-600">Permanent Address</label>
-                    <span className="text-lg block font-semibold">
+                    <span className="text-[15px] block font-semibold">
                         Flat No. 12B, ABC Apartments<br />
                         MG Road, Near City Mall<br />
                         Bengaluru, Karnataka - 560001<br />
@@ -284,7 +326,7 @@ function ProfileContent() {
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Corresponding Address</label>
-                    <span className="text-lg block font-semibold">
+                    <span className="text-[15px] block font-semibold">
                         Flat No. 12B, ABC Apartments<br />
                         MG Road, Near City Mall<br />
                         Bengaluru, Karnataka - 560001<br />
@@ -293,7 +335,7 @@ function ProfileContent() {
                 </div>
                 <div>
                     <label className="text-sm text-gray-600">Work Address</label>
-                    <span className="text-lg block font-semibold">
+                    <span className="text-[15px] block font-semibold">
                         Flat No. 12B, ABC Apartments<br />
                         MG Road, Near City Mall<br />
                         Bengaluru, Karnataka - 560001<br />
@@ -305,6 +347,7 @@ function ProfileContent() {
     );
 
 }
+
 function DocumentsContent() { return <p className="text-gray-600">Documents Content</p>; }
 
 function TimelineContent() {
@@ -360,29 +403,223 @@ function TimelineContent() {
     ];
 
     return (
-        <div className="p-6 bg-white rounded-lg shadow-md">
-            <h4 className="text-lg font-semibold mb-4">Detailed Event Log</h4>
-            <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+        <div className="mt-6 bg-white border rounded-lg p-3">
+        <h4 className="text-lg font-semibold mb-4 ">Detailed Event Log</h4>
+        
+        <div className="overflow-x-auto bg-white border rounded-lg">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-white text-gray-700 font-semibold border rounded-lg">
+                <th className="p-3 text-left">Date</th>
+                <th className="p-3 text-left">Time</th>
+                <th className="p-3 text-left">Stage</th>
+                <th className="p-3 text-left">Input By</th>
+                <th className="p-3 text-left">Details</th>
+                <th className="p-3 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {eventLogs.map((event, index) => (
+                <tr key={index} className="border bg-white transition rounded-lg">
+                  <td className="p-3">{event.date}</td>
+                  <td className="p-3">{event.time}</td>
+                  <td className="p-3">{event.stage}</td>
+                  <td className="p-3">{event.inputBy}</td>
+                  <td className="p-3">{event.details}</td>
+                  <td className="p-3">{event.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    );
+}
+
+function NotesContent() { return <p className="text-gray-600">Notes Content</p>; }
+
+function EnquiryContent() {
+
+    const [search, setSearch] = useState("");
+    const [showForm, setShowForm] = useState(false);
+
+    return (
+        <div className="p-6 bg-white min-h-screen border rounded-lg">
+            {/* Header */}
+            <h4 className="text-xl font-semibold mb-4">Enquiry Tracking & Resolution</h4>
+
+            {/* Show Enquiry Table OR Form based on state */}
+            {showForm ? (
+                // Enquiry Form
+                <div className="bg-white p-3 border rounded-lg  w-3/7 mx-auto">
+                    {/* Back Button */}
+                    <button
+                        onClick={() => setShowForm(false)}
+                        className="mb-4 text-blue-600 flex items-center"
+                    >
+                        ← Back
+                    </button>
+
+                    <h4 className="text-2xl font-bold text-center mb-4">Loan Enquiry Form</h4>
+
+                    <div className="grid grid-cols-2 gap-2">
+                        <div>
+                            <label className="block font-medium">First Name</label>
+                            <input type="text" className="w-full border px-3 py-2 rounded-md" placeholder="First Name" />
+                        </div>
+                        <div>
+                            <label className="block font-medium">Last Name</label>
+                            <input type="text" className="w-full border px-3 py-2 rounded-md" placeholder="Last Name" />
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block font-medium">Phone Number</label>
+                        <input type="text" className="w-full border px-3 py-2 rounded-md" placeholder="1234567890" />
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block font-medium">URL</label>
+                        <input type="text" className="w-full border px-3 py-2 rounded-md" placeholder="url to upload the data/document" />
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block font-medium">Subject</label>
+                        <input type="text" className="w-full border px-3 py-2 rounded-md" placeholder="Income Proof Submission" />
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block font-medium">Description</label>
+                        <textarea className="w-full border px-3 py-2 rounded-md" placeholder="Enter description"></textarea>
+                    </div>
+
+                    <div className="mt-6 flex justify-end">
+                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            Submit Enquiry
+                        </button>
+                    </div>
+                </div>
+            ) : (
+                // Enquiry Table
+                <>
+                    {/* Search & Create Enquiry */}
+                    <div className="flex items-center justify-between w-full mb-4">
+                        {/* Search Bar */}
+                        <div className="relative w-2/3">
+                            <input
+                                type="text"
+                                placeholder="Search by Request ID, Action or by who approved"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                            <Search className="absolute right-3 top-2.5 text-gray-400" size={20} />
+                        </div>
+
+                        {/* Create Enquiry Button */}
+                        <button
+                            onClick={() => setShowForm(true)}
+                            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 ml-4"
+                        >
+                            Create Enquiry
+                        </button>
+                    </div>
+
+                    {/* Table */}
+                    <div className="bg-white shadow-md rounded-md overflow-hidden">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-white text-gray-700 border rounded-lg">
+                                    <th className="px-4 py-3">Req.ID</th>
+                                    <th className="px-4 py-3">Date</th>
+                                    <th className="px-4 py-3">Reason</th>
+                                    <th className="px-4 py-3">Status</th>
+                                    <th className="px-4 py-3">Action</th>
+                                    <th className="px-4 py-3">Approved By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Array(6)
+                                    .fill()
+                                    .map((_, index) => (
+                                        <tr key={index} className="border text-sm text-gray-600">
+                                            <td className="px-4 py-3">Req001</td>
+                                            <td className="px-4 py-3">21/03/2025</td>
+                                            <td className="px-4 py-3">Income proof required</td>
+                                            <td className="px-4 py-3">Pending from user</td>
+                                            <td className="px-4 py-3">
+                                                <StatusDropdown />
+                                            </td>
+                                            <td className="px-4 py-3">Manager Name</td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
+
+function BREChecksContent() {
+    const [search, setSearch] = useState("");
+
+    const data = [
+        { id: "BRE001", name: "BRE Name1", threshold: "<= 20", status: "Eligible", document: "Yes", remarks: "-" },
+        { id: "BRE001", name: "BRE Name1", threshold: "<= 20", status: "Warning", document: "No", remarks: "Yet to receive data" },
+        { id: "BRE001", name: "BRE Name1", threshold: "> 20", status: "Not Eligible", document: "Yes", remarks: "High debt-to-income ratio" },
+    ];
+
+    const statusColors = {
+        "Eligible": "bg-green-100 text-green-700",
+        "Warning": "bg-yellow-100 text-yellow-700",
+        "Not Eligible": "bg-red-100 text-red-700",
+    };
+
+    return (
+        <div className="p-6 bg-white rounded-lg">
+            <h4 className="text-xl font-semibold text-gray-800">BRE Checks</h4>
+
+            {/* Search Box */}
+            <div className="relative mt-4 w-1/2">
+                <input
+                    type="text"
+                    placeholder="Search by BRE ID, BRE Name"
+                    className="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            </div>
+
+            {/* Table */}
+            <div className="mt-4 overflow-x-auto border rounded-lg">
+                <table className="w-full border bg-white overflow-hidden">
                     <thead>
-                        <tr className="bg-white border text-left text-gray-700 font-semibold rounded-lg">
-                            <th className="p-3">Date</th>
-                            <th className="p-3">Time</th>
-                            <th className="p-3">Stage</th>
-                            <th className="p-3">Input By</th>
-                            <th className="p-3">Details</th>
-                            <th className="p-3">Status</th>
+                        <tr className="border text-gray-700">
+                            <th className="p-3 text-left">BRE ID</th>
+                            <th className="p-3 text-left">BRE Name</th>
+                            <th className="p-3 text-left">Threshold</th>
+                            <th className="p-3 text-left">Status</th>
+                            <th className="p-3 text-left">Document</th>
+                            <th className="p-3 text-left">Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {eventLogs.map((event, index) => (
-                            <tr key={index} className="border rounded-lg"> 
-                                <td className="p-3">{event.date}</td>
-                                <td className="p-3">{event.time}</td>
-                                <td className="p-3">{event.stage}</td>
-                                <td className="p-3">{event.inputBy}</td>
-                                <td className="p-3">{event.details}</td>
-                                <td className="p-3">{event.status}</td>
+                        {data.map((row, index) => (
+                            <tr key={index} className="border text-sm border-gray-50 text-gray-600">
+                                <td className="p-3">{row.id}</td>
+                                <td className="p-3">{row.name}</td>
+                                <td className="p-3">{row.threshold}</td>
+                                <td className="p-3">
+                                    <span className={`px-2 py-1 text- rounded ${statusColors[row.status]}`}>
+                                        {row.status}
+                                    </span>
+                                </td>
+                                <td className="p-3">{row.document}</td>
+                                <td className="p-3">{row.remarks}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -390,7 +627,6 @@ function TimelineContent() {
             </div>
         </div>
     );
+
+
 }
-function NotesContent() { return <p className="text-gray-600">Notes Content</p>; }
-function EnquiryContent() { return <p className="text-gray-600">Enquiry Content</p>; }
-function BREChecksContent() { return <p className="text-gray-600">BRE Checks Content</p>; }
