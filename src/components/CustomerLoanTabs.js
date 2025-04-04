@@ -349,47 +349,46 @@ function ProfileContent() {
 
 }
 
+function DocumentsContent() {
+    // 📌 **Documents Table UI (Exactly as Image)**
+    const DocumentsContent = () => {
+        const documents = [
+            { name: "Photograph", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
+            { name: "PAN Card", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" }
+        ];
 
-// 📌 **Documents Table UI (Exactly as Image)**
-const DocumentsContent = () => {
-    const documents = [
-        { name: "Photograph", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
-        { name: "PAN Card", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" }
-    ];
-
-    return (
-        <div className="bg-white p-6 rounded-lg ">
-            <h4 className="text-xl font-semibold mb-4">Document Submission</h4>
-            <table className="w-full border-collapse">
-                <thead>
-                    <tr className="border-b text-left text-black-600">
-                        <th className="py-2 px-4">Document</th>
-                        <th className="py-2 px-4">Uploaded On</th>
-                        <th className="py-2 px-4">Status</th>
-                        <th className="py-2 px-4">Remarks</th>
-                        <th className="py-2 px-4 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {documents.map((doc, index) => (
-                        <tr key={index} className="border-b text-gray-700">
-                            <td className="py-3 px-4">{doc.name}</td>
-                            <td className="py-3 px-4">{doc.uploadedOn}</td>
-                            <td className="py-3 px-4">{doc.status}</td>
-                            <td className="py-3 px-4">{doc.remarks}</td>
-                            <td className="py-3 px-4 text-center">
-                                <button className="bg-blue-500 text-white px-3 py-1 rounded mr-3">Request Upload</button>
-                                <button className="bg-gray-200 px-3 py-1 rounded border">View</button>
-                            </td>
+        return (
+            <div className="bg-white p-6 rounded-lg ">
+                <h4 className="text-xl font-semibold mb-4">Document Submission</h4>
+                <table className="w-full border-collapse">
+                    <thead>
+                        <tr className="border-b text-left text-black-600">
+                            <th className="py-2 px-4">Document</th>
+                            <th className="py-2 px-4">Uploaded On</th>
+                            <th className="py-2 px-4">Status</th>
+                            <th className="py-2 px-4">Remarks</th>
+                            <th className="py-2 px-4 text-center">Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
-
+                    </thead>
+                    <tbody>
+                        {documents.map((doc, index) => (
+                            <tr key={index} className="border-b text-gray-700">
+                                <td className="py-3 px-4">{doc.name}</td>
+                                <td className="py-3 px-4">{doc.uploadedOn}</td>
+                                <td className="py-3 px-4">{doc.status}</td>
+                                <td className="py-3 px-4">{doc.remarks}</td>
+                                <td className="py-3 px-4 text-center">
+                                    <button className="bg-blue-500 text-white px-3 py-1 rounded mr-3">Request Upload</button>
+                                    <button className="bg-gray-200 px-3 py-1 rounded border">View</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    };
+}
 
 function TimelineContent() {
     const eventLogs = [
@@ -445,36 +444,36 @@ function TimelineContent() {
 
     return (
         <div className="mt-6 bg-white border rounded-lg p-3">
-        <h4 className="text-lg font-semibold mb-4 ">Detailed Event Log</h4>
-        
-        <div className="overflow-x-auto bg-white border rounded-lg">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="bg-white text-gray-700 font-semibold border rounded-lg">
-                <th className="p-3 text-left">Date</th>
-                <th className="p-3 text-left">Time</th>
-                <th className="p-3 text-left">Stage</th>
-                <th className="p-3 text-left">Input By</th>
-                <th className="p-3 text-left">Details</th>
-                <th className="p-3 text-left">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {eventLogs.map((event, index) => (
-                <tr key={index} className="border bg-white transition rounded-lg">
-                  <td className="p-3">{event.date}</td>
-                  <td className="p-3">{event.time}</td>
-                  <td className="p-3">{event.stage}</td>
-                  <td className="p-3">{event.inputBy}</td>
-                  <td className="p-3">{event.details}</td>
-                  <td className="p-3">{event.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <h4 className="text-lg font-semibold mb-4 ">Detailed Event Log</h4>
+
+            <div className="overflow-x-auto bg-white border rounded-lg">
+                <table className="w-full border-collapse">
+                    <thead>
+                        <tr className="bg-white text-gray-700 font-semibold border rounded-lg">
+                            <th className="p-3 text-left">Date</th>
+                            <th className="p-3 text-left">Time</th>
+                            <th className="p-3 text-left">Stage</th>
+                            <th className="p-3 text-left">Input By</th>
+                            <th className="p-3 text-left">Details</th>
+                            <th className="p-3 text-left">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {eventLogs.map((event, index) => (
+                            <tr key={index} className="border bg-white transition rounded-lg">
+                                <td className="p-3">{event.date}</td>
+                                <td className="p-3">{event.time}</td>
+                                <td className="p-3">{event.stage}</td>
+                                <td className="p-3">{event.inputBy}</td>
+                                <td className="p-3">{event.details}</td>
+                                <td className="p-3">{event.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-      
+
     );
 }
 
@@ -504,7 +503,7 @@ function NotesContent() {
     return (
         <div className="border-2 border-gray-300 shadow-lg rounded-xl p-4 flex bg-white relative h-[903px] overflow-hidden">
             {/* Sidebar */}
-            <div 
+            <div
                 className={`bg-[#d0ddea] p-6 border-r border-gray-300 rounded-md h-full transition-all duration-300 ${isCollapsed ? 'w-0 overflow-hidden' : 'w-[470px]'}`}
             >
                 {!isCollapsed && (
@@ -520,7 +519,7 @@ function NotesContent() {
                         </div>
 
                         {/* New Note Button */}
-                        <button 
+                        <button
                             className="w-[130px] bg-blue-600 text-white py-2 rounded flex items-center justify-center mb-6"
                             onClick={addNewNote}
                         >
@@ -602,9 +601,9 @@ function NotesContent() {
 
                                 {/* Add Comments Button */}
                                 <div className="flex justify-end">
-                                    <button 
+                                    <button
                                         className="w-[130px] bg-gray-600 text-white py-2 rounded flex items-center justify-center mb-6 mt-2"
-                                        onClick={addNewNote} 
+                                        onClick={addNewNote}
                                     >
                                         Add Comments
                                     </button>
@@ -617,9 +616,9 @@ function NotesContent() {
 
                 {/* Input Field */}
                 <div className="relative w-full mt-6 pt-4 bg-white sticky bottom-0">
-                    <input 
-                        type="text" 
-                        placeholder="Type your notes here..." 
+                    <input
+                        type="text"
+                        placeholder="Type your notes here..."
                         className="w-full p-3 border rounded-xl shadow-sm bg-white pr-12"
                     />
                     <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">📎</span>
