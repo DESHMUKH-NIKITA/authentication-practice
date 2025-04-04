@@ -2,6 +2,8 @@
 import Sidebar from '@/components/Sidebar';
 import { useState } from 'react';
 import { FaArrowLeft, FaInfoCircle, FaEdit } from 'react-icons/fa';
+import { Pencil, Trash } from 'lucide-react';
+
 
 export default function CreateProduct() {
     const [step, setStep] = useState(1);
@@ -43,13 +45,13 @@ export default function CreateProduct() {
                 </div>
 
                 {/* Stepper */}
-                <div className="flex items-center space-x-4 mb-6 px-8 mt-4">
+                <div className="flex items-center space-x-8 mb-6 px-10 mt-4">
                     {['Product type', 'Customer type', 'Loan template', 'Product details', 'Review'].map((item, index) => (
-                        <div key={index} className={`flex items-center space-x-2 ${step === index + 1 ? 'text-blue-500' : 'text-gray-400'}`}>
-                            <div className={`w-8 h-8 flex items-center justify-center rounded-full border ${step === index + 1 ? 'border-blue-500' : 'border-gray-300'}`}>
+                        <div key={index} className={`flex items-center space-x-4 ${step === index + 1 ? 'text-blue-500' : 'text-gray-400'}`}>
+                            <div className={`w-6 h-7 flex items-center justify-center rounded-full border ${step === index + 1 ? 'border-blue-500' : 'border-gray-300'}`}>
                                 {index + 1}
                             </div>
-                            <span className={`${step === index + 1 ? 'font-medium' : 'font-normal'}`}>{item}</span>
+                            <span className={`${step === index + 1 ? 'font-medium' : 'text-xs !important '}`}>{item}</span>
                         </div>
                     ))}
                 </div>
@@ -59,8 +61,10 @@ export default function CreateProduct() {
                     {/* Step 1: Product Type */}
                     {step === 1 && (
                         <div>
-                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
-                            <div className="space-y-3">
+
+                            <h5 className="mb-4">Please enter the product details</h5>
+
+                            <div className=" space-y-3">
                                 {[
                                     {
                                         type: 'Personal Loan - Secured',
@@ -111,12 +115,12 @@ export default function CreateProduct() {
                                                     <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
                                                 )}
                                             </div>
-                                            <span className="text-lg font-medium">{type}</span>
+                                            <span className="text-sm font-medium">{type}</span>
                                         </div>
 
                                         {/* Description */}
                                         <div>
-                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
+                                            <p className="text-xs text-gray-500 mt-1 px-9">{description}</p>
                                         </div>
                                     </label>
                                 ))}
@@ -128,7 +132,12 @@ export default function CreateProduct() {
                     {/* Step 2: Customer Type */}
                     {step === 2 && (
                         <div>
-                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
+                            <div className="flex items-center">
+                                <button onClick={handleBack} className="mr-3">
+                                    <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-3" />
+                                </button>
+                                <h5 className="text-lg font-semibold mb-2 ">Please enter the customer details</h5>
+                            </div>
                             <div className="space-y-3">
                                 {[
                                     {
@@ -155,18 +164,18 @@ export default function CreateProduct() {
                                             {/* Custom Radio Button */}
                                             <div
                                                 className={`w-5 h-5 border-2 rounded-full ${customerType === type ? 'border-black' : 'border-gray-400'
-                                                    } flex items-center justify-center mt-1`}
+                                                    } flex items-center justify-center mt-3`}
                                             >
                                                 {customerType === type && (
-                                                    <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                    <div className="w-2.5 h-2.5 bg-black rounded-full "></div>
                                                 )}
                                             </div>
-                                            <span className="text-lg font-medium">{type}</span>
+                                            <span className="text-sm font-medium mt-3">{type}</span>
                                         </div>
 
                                         {/* Description */}
                                         <div>
-                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
+                                            <p className="text-xs text-gray-500 mt-1 px-9">{description}</p>
                                         </div>
                                     </label>
                                 ))}
@@ -178,7 +187,12 @@ export default function CreateProduct() {
                     {/* Step 3: Loan Template */}
                     {step === 3 && (
                         <div>
-                            <h3 className="text-lg font-semibold mb-4">Please select the product type</h3>
+                            <div className="flex items-center">
+                                <button onClick={handleBack} className="mr-2">
+                                    <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-2 " />
+                                </button>
+                                <h5 className="text-lg font-semibold mb-2">Please enter the loan details</h5>
+                            </div>
                             <div className="space-y-6">
                                 {[
                                     {
@@ -205,18 +219,18 @@ export default function CreateProduct() {
                                             {/* Custom Radio Button */}
                                             <div
                                                 className={`w-5 h-5 border-2 rounded-full ${loanTemplate === template ? 'border-black' : 'border-gray-400'
-                                                    } flex items-center justify-center mt-1`}
+                                                    } flex items-center justify-center mt-2`}
                                             >
                                                 {loanTemplate === template && (
-                                                    <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                    <div className="w-2.5 h-2.5 bg-black rounded-full  "></div>
                                                 )}
                                             </div>
-                                            <span className="text-lg font-medium">{template} Template</span>
-                                            <FaInfoCircle className="inline ml-2 text-gray-400" />
+                                            <span className="text-sm font-medium mt-2">{template} Template</span>
+                                            <FaInfoCircle className="inline ml-2 text-gray-400 mt-2" />
                                         </div>
                                         {/* Text */}
                                         <div>
-                                            <p className="text-sm text-gray-500 mt-1 px-9">{description}</p>
+                                            <p className="text-xs text-gray-500  px-8 mb-2 mt-2">{description}</p>
                                         </div>
                                     </label>
                                 ))}
@@ -228,19 +242,24 @@ export default function CreateProduct() {
                     {/* Step 4: Product Details */}
                     {step === 4 && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-4">Please enter the product details</h2>
+                            <div className="flex items-center">
+                                <button onClick={handleBack} className="mr-2">
+                                    <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-2" />
+                                </button>
+                                <h5 className="text-lg font-semibold mb-2">Please enter the product details</h5>
+                            </div>
                             <input
                                 type="text"
                                 placeholder="Product Name"
                                 value={productName}
                                 onChange={(e) => setProductName(e.target.value)}
-                                className="border p-3 w-full rounded mb-4"
+                                className="border p-3 w-full  mb-5 mt-3"
                             />
                             <textarea
                                 placeholder="Product Description"
                                 value={productDescription}
                                 onChange={(e) => setProductDescription(e.target.value)}
-                                className="border p-3 w-full rounded h-24"
+                                className="border p-3 w-full  h-30"
                             />
                         </div>
                     )}
@@ -253,15 +272,20 @@ export default function CreateProduct() {
                             {/* <button onClick={handleBack} className="flex items-center text-blue-500 mb-4">
                                 <FaArrowLeft className="mr-2" /> Back
                             </button> */}
-
-                            <h2 className="text-lg font-semibold mb-6">Please review & confirm the details</h2>
+                            <div className="flex items-center">
+                                <button onClick={handleBack} className="mr-2">
+                                    <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-2" />
+                                </button>
+                                <h5 className="text-lg font-semibold mb-7">Please review & confirm the details</h5>
+                            </div>
 
                             {/* Product Type */}
                             <div className="mb-6">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-gray-700 font-medium">Product Type</label>
-                                    <button onClick={() => handleEdit(1)} className="flex items-center text-blue-500">
-                                        <FaEdit className="mr-1" /> Edit
+                                    <label className="text-gray-700 font-lg ">Product Type</label>
+                                    <button onClick={() => handleEdit(1)} className="flex items-center text-blue-500 ">
+                                        <Pencil className="text-blue-500 w-4 h-6 mr-2" />
+                                        Edit
                                     </button>
                                 </div>
                                 <input
@@ -275,9 +299,10 @@ export default function CreateProduct() {
                             {/* Customer Type */}
                             <div className="mb-6">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-gray-700 font-medium">Customer Type</label>
+                                    <label className="text-gray-700 font-lg">Customer Type</label>
                                     <button onClick={() => handleEdit(2)} className="flex items-center text-blue-500">
-                                        <FaEdit className="mr-1" /> Edit
+                                        <Pencil className="text-blue-500 w-4 h-6 mr-2" />
+                                        Edit
                                     </button>
                                 </div>
                                 <input
@@ -291,9 +316,10 @@ export default function CreateProduct() {
                             {/* Loan Template */}
                             <div className="mb-6">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-gray-700 font-medium">Loan Template</label>
+                                    <label className="text-gray-700 font-lg">Loan Template</label>
                                     <button onClick={() => handleEdit(3)} className="flex items-center text-blue-500">
-                                        <FaEdit className="mr-1" /> Edit
+                                        <Pencil className="text-blue-500 w-4 h-6 mr-2" />
+                                        Edit
                                     </button>
                                 </div>
                                 <input
@@ -307,9 +333,10 @@ export default function CreateProduct() {
                             {/* Product Name */}
                             <div className="mb-6">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-gray-700 font-medium">Product Name</label>
+                                    <label className="text-gray-700 font-lg">Product Name</label>
                                     <button onClick={() => handleEdit(4)} className="flex items-center text-blue-500">
-                                        <FaEdit className="mr-1" /> Edit
+                                        <Pencil className="text-blue-500 w-4 h-6 mr-2" />
+                                        Edit
                                     </button>
                                 </div>
                                 <input
@@ -323,9 +350,10 @@ export default function CreateProduct() {
                             {/* Product Description */}
                             <div className="mb-6">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-gray-700 font-medium">Product Description</label>
+                                    <label className="text-gray-700 font-lg">Product Description</label>
                                     <button onClick={() => handleEdit(4)} className="flex items-center text-blue-500">
-                                        <FaEdit className="mr-1" /> Edit
+                                        <Pencil className="text-blue-500 w-4 h-6 mr-2" />
+                                        Edit
                                     </button>
                                 </div>
                                 <textarea
@@ -341,13 +369,14 @@ export default function CreateProduct() {
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between px-6 mt-6">
-                    {step > 1 && (
+                    {/* {step > 1 && (
                         <button onClick={handleBack} className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg">Back</button>
-                    )}
+
+                    )} */}
                     {step < 5 ? (
                         <button onClick={handleNext} className="bg-green-500 text-white py-2 px-4 rounded-lg">Continue →</button>
                     ) : (
-                        <button className="bg-green-500 text-white py-2 px-4 rounded-lg">Submit</button>
+                        <button className="bg-green-500 text-white py-2 px-4">Submit</button>
                     )}
                 </div>
             </div>
