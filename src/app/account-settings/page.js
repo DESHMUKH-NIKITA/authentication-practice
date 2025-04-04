@@ -4,7 +4,7 @@ import Layout from '@/components/Layout';  // ✅ Import Layout
 import LeftMenu from '@/components/LeftMenu';
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import Button from "@/components/ui/button";
+import Button  from "@/components/ui/button";
 
 export default function AccountSettings() {
   const [isEditing, setIsEditing] = useState(false);
