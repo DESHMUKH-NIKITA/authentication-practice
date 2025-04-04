@@ -62,7 +62,7 @@ export default function LoanStages() {
             <Layout />
     
             <div className="flex flex-col w-full">
-                <div className="bg-white shadow-md flex justify-between items-center px-6 py-3 h-14">
+                <div className="bg-white shadow-md flex justify-between items-center px-6 py-3 h-14 -ml-4">
                     <h4 className="text-lg font-semibold text-gray-800">Account Settings</h4>
                     <div className="flex items-center space-x-2">
                         <div className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold">
