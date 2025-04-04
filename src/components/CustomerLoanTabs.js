@@ -304,7 +304,48 @@ function ProfileContent() {
     );
 
 }
-function DocumentsContent() { return <p className="text-gray-600">Documents Content</p>; }
+
+
+// 📌 **Documents Table UI (Exactly as Image)**
+const DocumentsContent = () => {
+    const documents = [
+        { name: "Photograph", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
+        { name: "PAN Card", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" }
+    ];
+
+    return (
+        <div className="bg-white p-6 rounded-lg ">
+            <h4 className="text-xl font-semibold mb-4">Document Submission</h4>
+            <table className="w-full border-collapse">
+                <thead>
+                    <tr className="border-b text-left text-black-600">
+                        <th className="py-2 px-4">Document</th>
+                        <th className="py-2 px-4">Uploaded On</th>
+                        <th className="py-2 px-4">Status</th>
+                        <th className="py-2 px-4">Remarks</th>
+                        <th className="py-2 px-4 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {documents.map((doc, index) => (
+                        <tr key={index} className="border-b text-gray-700">
+                            <td className="py-3 px-4">{doc.name}</td>
+                            <td className="py-3 px-4">{doc.uploadedOn}</td>
+                            <td className="py-3 px-4">{doc.status}</td>
+                            <td className="py-3 px-4">{doc.remarks}</td>
+                            <td className="py-3 px-4 text-center">
+                                <button className="bg-blue-500 text-white px-3 py-1 rounded mr-3">Request Upload</button>
+                                <button className="bg-gray-200 px-3 py-1 rounded border">View</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+
 
 function TimelineContent() {
     const eventLogs = [
@@ -375,7 +416,7 @@ function TimelineContent() {
                     </thead>
                     <tbody>
                         {eventLogs.map((event, index) => (
-                            <tr key={index} className="border rounded-lg"> 
+                            <tr key={index} className="border rounded-lg">
                                 <td className="p-3">{event.date}</td>
                                 <td className="p-3">{event.time}</td>
                                 <td className="p-3">{event.stage}</td>

@@ -10,6 +10,9 @@ export default function Products() {
   const handleCreateProduct = () => {
     router.push("/create-product"); // ✅ Redirect to the create product page
   };
+  const handleLeadDashboard = () => {
+    router.push('/lead-dashboard'); // ✅ Redirect to the create product page
+  };
 
   return (
     <Layout>
@@ -87,7 +90,7 @@ export default function Products() {
                   <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition">
                     <FaCog className="text-gray-600" />
                   </button>
-                  <button className="bg-gray-200 font-bold px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
+                  <button onClick={handleLeadDashboard} className="bg-gray-200 font-bold px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
                     Leads
                   </button>
                 </div>

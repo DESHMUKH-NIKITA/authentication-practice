@@ -77,53 +77,102 @@ export default function LoanStages() {
                                 <p className="text-gray-600">Configure loan processing stages based on your requirements.</p>
                                 <hr className="my-4" />
 
-                                {/* Existing Templates */}
-                                <div className="mb-6 w-full">
-                                    <h3 className="text-lg font-semibold mb-4">Existing Templates</h3>
+                            {/* Existing Templates */}
+                            <div className="mb-6 w-2/4 p-6">
+                                <h3 className="text-lg font-semibold mb-2">Existing Templates</h3>
+                                {templates.map((template, index) => (
+                                    <div key={index} className="bg-white p-6 rounded-lg shadow-md w-full min-h-[95px] mb-6 flex flex-col">
+                                        <div className="flex items-center justify-between">
+                                            {template.isEditing ? (
+                                                <input
+                                                    type="text"
+                                                    value={template.title}
+                                                    onChange={(e) => handleTemplateTitleChange(index, e.target.value)}
+                                                    className="text-lg font-semibold border border-gray-300 p-1 rounded w-full"
+                                                />
+                                            ) : (
+                                                <h4 className="text-lg font-semibold">{template.title}</h4>
+                                            )}
 
-                                    {templates.map((template, index) => (
-                                        <div key={index} className="bg-white p-6 rounded-lg shadow-md mb-6">
-                                            <div className="flex items-center justify-between">
-                                                {template.isEditing ? (
+                                            <button onClick={() => handleToggleEdit(index)}>
+                                                <Pencil className="text-blue-500 w-4 h-6" />
+                                            </button>
+                                        </div>
+
+                                        <div className="mt-3 space-y-2">
+                                            {template.stages.map((stage, stageIndex) => (
+                                                <div key={stageIndex} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
                                                     <input
                                                         type="text"
                                                         value={template.title}
                                                         onChange={(e) => handleTemplateTitleChange(index, e.target.value)}
                                                         className="text-lg font-semibold border border-gray-300 p-2 rounded w-full"
                                                     />
-                                                ) : (
-                                                    <h4 className="text-lg font-semibold">{template.title}</h4>
-                                                )}
+                                                    {template.isEditing && (
+                                                        <button
+                                                            onClick={() => handleRemoveStage(index, stageIndex)}
+                                                            className="text-red-500 ml-2"
+                                                        >       <img src="-button.png" alt="Back" className="w-7 h-6 mr-2" />
 
-                                                <button onClick={() => handleToggleEdit(index)}>
-                                                    <Pencil className="text-blue-500 w-5 h-5" />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ))}
+
+                                            {/* Add New Stage Input */}
+                                            {template.isEditing && (
+                                                <div className="flex items-center bg-gray-100 p-2 rounded-lg">
+                                                    <input
+                                                        type="text"
+                                                        placeholder="New Stage"
+                                                        className="bg-transparent outline-none w-full"
+                                                        onKeyDown={(e) => {
+                                                            if (e.key === "Enter") {
+                                                                handleAddStage(index, e.target.value);
+                                                                e.target.value = "";
+                                                            }
+                                                        }}
+                                                    />
+                                                    <button
+                                                        onClick={(e) => {
+                                                            const input = e.target.closest("div").querySelector("input");
+                                                            if (input && input.value.trim() !== "") {
+                                                                handleAddStage(index, input.value);
+                                                                input.value = "";
+                                                            }
+                                                        }}
+                                                        className="text-blue-500 ml-2"
+                                                    >
+                                                        <img src="+button.png" alt="Add" className="w-7 h-6 mr-2" />
+                                                    </button>
+
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Save Changes Button */}
+                                        {template.isEditing && (
+                                            <div className="flex justify-end mt-4">
+                                                <button
+                                                    className="bg-green-500 text-white px-4 py-2 rounded"
+                                                    onClick={() => handleToggleEdit(index)}
+                                                >
+                                                    Save Changes
                                                 </button>
                                             </div>
 
-                                            <div className="mt-4 space-y-2">
-                                                {template.stages.map((stage, stageIndex) => (
-                                                    <div key={stageIndex} className="flex justify-between items-center bg-gray-100 p-2 rounded-lg">
-                                                        <input
-                                                            type="text"
-                                                            value={stage}
-                                                            className="bg-transparent outline-none w-full"
-                                                            readOnly={!template.isEditing}
-                                                            onChange={(e) => {
-                                                                const updatedTemplates = [...templates];
-                                                                updatedTemplates[index].stages[stageIndex] = e.target.value;
-                                                                setTemplates(updatedTemplates);
-                                                            }}
-                                                        />
-                                                        {template.isEditing && (
-                                                            <button
-                                                                onClick={() => handleRemoveStage(index, stageIndex)}
-                                                                className="text-red-500 hover:text-red-700"
-                                                            >
-                                                                <Trash className="w-5 h-5" />
-                                                            </button>
-                                                        )}
-                                                    </div>
-                                                ))}
+
+                            {/* Add New Template Section */}
+                            <div className="mb-6 w-3/4 p-6">
+                                <h3 className="text-lg font-semibold mb-2">Custom Template</h3>
+                                <div className="flex gap-4">
+                                    <div
+                                        className="border-2 border-dashed border-gray-400 p-4 text-center cursor-pointer w-48 h-32 flex items-center justify-center"
+                                        onClick={handleAddNewTemplate}
+                                    >
+                                        <p className="text-blue-500 font-semibold">Add New Template</p>
+                                    </div>
+                                </div>
 
                                                 {/* Add New Stage Input */}
                                                 {template.isEditing && (
