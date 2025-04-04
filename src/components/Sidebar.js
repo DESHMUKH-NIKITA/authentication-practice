@@ -40,7 +40,7 @@ export default function Sidebar({ onToggle, isCollapsed }) {
       </button>
 
       {/* Logo */}
-      <div className={`flex items-center justify-center mb-6 ${isCollapsed ? "p-2" : "p-4"}`}>
+      <div className={`flex items-center justify-center mb-6 ${isCollapsed ? "p-1" : "p-2"}`}>
         <img src="/logo.png" alt="FinAnalyz" className={`transition ${isCollapsed ? "w-8" : "w-20"}`} />
         {!isCollapsed && <span className="ml-2 text-lg">FinAnalyz</span>}
       </div>
