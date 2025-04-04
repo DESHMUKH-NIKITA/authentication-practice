@@ -46,7 +46,7 @@ export default function AccountSettings() {
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h1 style={{ fontSize: '29px', fontWeight: 'bold', color: '#1F2937' }}>User Management</h1>
-                <p className="text-md text-gray-500 text-left">
+                <p className="text-md text-gray-400 text-left">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                 </p>
               </div>
@@ -67,7 +67,7 @@ export default function AccountSettings() {
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition flex items-center"
                   style={{ borderRadius: '10px'}}
                 >
-                  <PlusCircle className="w-5.2 h-5 mr-2" />
+                  <PlusCircle className="w-5.2 h-5 mr-0.5" />
                   <span className="whitespace-nowrap">Add Role</span>  
                 </button>
               )}
