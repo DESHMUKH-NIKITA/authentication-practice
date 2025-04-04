@@ -161,7 +161,7 @@ export default function LoanStages() {
                                                 </button>
                                             </div>
 
-
+                                        )}
                             {/* Add New Template Section */}
                             <div className="mb-6 w-3/4 p-6">
                                 <h3 className="text-lg font-semibold mb-2">Custom Template</h3>
