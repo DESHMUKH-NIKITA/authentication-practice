@@ -22,9 +22,12 @@ export default function LeftMenu() {
   ];
 
   const userManagementRoutes = ['/user-management', '/add-new-user', '/add-new-role'];
-
+//container left
   return (
-    <div className="w-1/1.8 bg-white rounded-lg shadow p-4 mr-2 container-left">
+    <div 
+     className="bg-white rounded-lg shadow p-4 mr-2 ml-[7px] w-[340px] h-[687px]"
+    //style={{ marginLeft: '7px', width: '340px', height: '687px' }}
+  >
       <ul className="space-x-4">
         {menuItems.map((item) => {
           const isActive = 

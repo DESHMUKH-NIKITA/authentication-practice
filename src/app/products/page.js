@@ -1,29 +1,24 @@
-'use client';
+"use client";
 
-import Sidebar from '@/components/Sidebar';
-import { FaSearch, FaPlus, FaCog, FaEllipsisV } from 'react-icons/fa';
-import { useRouter } from 'next/navigation'; // ✅ Import the Next.js router
+import Layout from "@/components/Layout"; // ✅ Import Layout
+import { FaSearch, FaPlus, FaCog, FaEllipsisV } from "react-icons/fa";
+import { useRouter } from "next/navigation"; // ✅ Import the Next.js router
 
 export default function Products() {
   const router = useRouter(); // ✅ Initialize the router
 
   const handleCreateProduct = () => {
-    router.push('/create-product'); // ✅ Redirect to the create product page
+    router.push("/create-product"); // ✅ Redirect to the create product page
   };
   const handleLeadDashboard = () => {
     router.push('/lead-dashboard'); // ✅ Redirect to the create product page
   };
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 ml-64 bg-gray-100 min-h-screen">
-        {/* Navbar */}
+    <Layout>
+      <div className="bg-gray-100 min-h-screen">
+        {/* Navbar Section */}
         <div className="w-full top-0 left-0 right-0 bg-white shadow-md flex justify-between items-center px-6 py-3 h-14">
-          {/* Title */}
           <h4 className="text-lg font-semibold text-gray-800">Products</h4>
 
           {/* User Section */}
@@ -34,7 +29,6 @@ export default function Products() {
             <span className="text-sm font-medium text-gray-700">Username</span>
           </div>
         </div>
-
 
         {/* Search & Create Product Section */}
         <div className="flex items-center bg-white p-2 shadow-md rounded-lg mt-10 mb-4 gap-x-4">
@@ -48,11 +42,11 @@ export default function Products() {
             <FaSearch className="text-gray-500 mx-2" />
           </div>
 
-          {/* Button  */}
+          {/* Create New Product Button */}
           <button
-            onClick={handleCreateProduct} // ✅ Call the function here
+            onClick={handleCreateProduct}
             className="ml-4 flex items-center bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition"
-            style={{ borderRadius: "8px" }}  // Explicitly set border radius
+            style={{ borderRadius: "8px" }}
           >
             <FaPlus className="mr-2" /> Create New Product
           </button>
@@ -105,6 +99,6 @@ export default function Products() {
           ))}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

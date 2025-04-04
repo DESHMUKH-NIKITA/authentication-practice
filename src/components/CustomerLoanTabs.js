@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 const StatusDropdown = () => {
@@ -477,7 +478,156 @@ function TimelineContent() {
     );
 }
 
-function NotesContent() { return <p className="text-gray-600">Notes Content</p>; }
+function NotesContent() {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [notes, setNotes] = useState([]);
+    const [activeDropdown, setActiveDropdown] = useState(null);
+
+    // Function to Add a New Note
+    const addNewNote = () => {
+        const newNote = {
+            id: notes.length + 1,
+            author: "Manager Name / Role",
+            date: new Date().toLocaleString(),
+            message: "Reviewed the applicant’s income documents. Salary slips verified for the last 3 months. The bank statement shows consistent deposits, but there is a recent large withdrawal. Need clarification from the applicant on the purpose of this transaction before final approval.",
+            comments: [],
+            showComments: false,
+        };
+        setNotes([newNote, ...notes]);
+    };
+
+    // Function to toggle dropdown
+    const toggleDropdown = (index) => {
+        setActiveDropdown(activeDropdown === index ? null : index);
+    };
+
+    return (
+        <div className="border-2 border-gray-300 shadow-lg rounded-xl p-4 flex bg-white relative h-[903px] overflow-hidden">
+            {/* Sidebar */}
+            <div 
+                className={`bg-[#d0ddea] p-6 border-r border-gray-300 rounded-md h-full transition-all duration-300 ${isCollapsed ? 'w-0 overflow-hidden' : 'w-[470px]'}`}
+            >
+                {!isCollapsed && (
+                    <>
+                        {/* Search Bar */}
+                        <div className="mb-4 relative">
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                className="w-full p-2 pl-10 border rounded-xl shadow-sm bg-white"
+                            />
+                            <span className="absolute right-6 top-2 text-gray-400">🔍</span>
+                        </div>
+
+                        {/* New Note Button */}
+                        <button 
+                            className="w-[130px] bg-blue-600 text-white py-2 rounded flex items-center justify-center mb-6"
+                            onClick={addNewNote}
+                        >
+                            ✎ New Note
+                        </button>
+
+                        {/* Inbox Section */}
+                        <div className="flex justify-between items-center mb-4 mt-5">
+                            <h2 style={{ fontSize: "1.2rem", fontWeight: "600", position: "relative", right: "5px" }}>
+                                Inbox
+                            </h2>
+
+                            <select className="bg-transparent cursor-pointer text-sm border p-1 rounded-md">
+                                <option>All</option>
+                            </select>
+                        </div>
+
+                        {/* Inbox Messages */}
+                        <div className="mb-4 -mt-5 overflow-y-auto">
+                            {[...Array(3)].map((_, index) => (
+                                <div key={index} className="border p-3 bg-white mb-2 shadow-md border-blue-500 rounded-md">
+                                    <div className="flex justify-between text-sm">
+                                        <span>Manager Name</span>
+                                        <span>March {21 - index}, 2025</span>
+                                    </div>
+                                    <p className="text-gray-600 text-sm mt-1">
+                                        Reviewed the applicant’s income documents. Salary slips verified for the last 3 months.
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col p-6 relative overflow-hidden">
+                {/* Notes Section */}
+                <div className="overflow-y-auto flex-1 max-h-[700px]">
+                    {notes.length === 0 ? (
+                        <p className="text-gray-500 text-center mb-4">
+                            <span className="font-bold">You don’t have any notes yet</span><br />
+                            Start typing your notes below
+                        </p>
+                    ) : (
+                        notes.map((note, index) => (
+                            <div key={note.id} className="mb-6 relative">
+                                {/* Note Box */}
+                                <div className="border p-4 bg-gray-100 shadow-md rounded-lg">
+                                    <div className="flex justify-between text-sm">
+                                        <span className="font-bold">{note.author}</span>
+                                        <span>{note.date}</span>
+                                    </div>
+                                    <p className="text-gray-600 text-sm mt-2">{note.message}</p>
+                                </div>
+
+                                {/* More Options (Dropdown Button) */}
+                                <div className="absolute top-2 right-2">
+                                    <MoreHorizontal
+                                        className="w-5 h-5 text-gray-500 cursor-pointer hover:text-blue-600"
+                                        onClick={() => toggleDropdown(index)}
+                                    />
+
+                                    {/* Dropdown Menu */}
+                                    {activeDropdown === index && (
+                                        <div className="absolute right-0 mt-2 w-28 bg-white shadow-lg rounded-md border border-gray-200 z-10">
+                                            <button
+                                                className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                                onClick={() => {
+                                                    alert(`Edit User ${index + 1}`);
+                                                    setActiveDropdown(null);
+                                                }}
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Add Comments Button */}
+                                <div className="flex justify-end">
+                                    <button 
+                                        className="w-[130px] bg-gray-600 text-white py-2 rounded flex items-center justify-center mb-6 mt-2"
+                                        onClick={addNewNote} 
+                                    >
+                                        Add Comments
+                                    </button>
+                                </div>
+
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Input Field */}
+                <div className="relative w-full mt-6 pt-4 bg-white sticky bottom-0">
+                    <input 
+                        type="text" 
+                        placeholder="Type your notes here..." 
+                        className="w-full p-3 border rounded-xl shadow-sm bg-white pr-12"
+                    />
+                    <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">📎</span>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 function EnquiryContent() {
 
