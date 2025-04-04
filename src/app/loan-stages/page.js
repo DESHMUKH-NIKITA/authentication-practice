@@ -75,10 +75,10 @@ export default function LoanStages() {
                             <hr className="my-4" />
 
                             {/* Existing Templates */}
-                            <div className="mb-6 w-3/4 p-6">
+                            <div className="mb-6 w-2/4 p-6">
                                 <h3 className="text-lg font-semibold mb-2">Existing Templates</h3>
                                 {templates.map((template, index) => (
-                                    <div key={index} className="bg-white p-6 rounded-lg shadow-md w-93 h-95 mb-6">
+                                    <div key={index} className="bg-white p-6 rounded-lg shadow-md w-full min-h-[95px] mb-6 flex flex-col">
                                         <div className="flex items-center justify-between">
                                             {template.isEditing ? (
                                                 <input
@@ -98,7 +98,7 @@ export default function LoanStages() {
 
                                         <div className="mt-3 space-y-2">
                                             {template.stages.map((stage, stageIndex) => (
-                                                <div key={stageIndex} className="flex justify-between bg-gray-100 p-2 rounded-lg">
+                                                <div key={stageIndex} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
                                                     <input
                                                         type="text"
                                                         value={stage}
@@ -113,8 +113,8 @@ export default function LoanStages() {
                                                     {template.isEditing && (
                                                         <button
                                                             onClick={() => handleRemoveStage(index, stageIndex)}
-                                                            className="text-red-500"
-                                                        >-
+                                                            className="text-red-500 ml-2"
+                                                        >       <img src="-button.png" alt="Back" className="w-7 h-6 mr-2" />
 
                                                         </button>
                                                     )}
@@ -123,7 +123,7 @@ export default function LoanStages() {
 
                                             {/* Add New Stage Input */}
                                             {template.isEditing && (
-                                                <div className="flex justify-between bg-gray-100 p-2 rounded-lg">
+                                                <div className="flex items-center bg-gray-100 p-2 rounded-lg">
                                                     <input
                                                         type="text"
                                                         placeholder="New Stage"
@@ -137,14 +137,17 @@ export default function LoanStages() {
                                                     />
                                                     <button
                                                         onClick={(e) => {
-                                                            const input = e.target.previousSibling;
-                                                            handleAddStage(index, input.value);
-                                                            input.value = "";
+                                                            const input = e.target.closest("div").querySelector("input");
+                                                            if (input && input.value.trim() !== "") {
+                                                                handleAddStage(index, input.value);
+                                                                input.value = "";
+                                                            }
                                                         }}
-                                                        className="text-blue-500"
+                                                        className="text-blue-500 ml-2"
                                                     >
-                                                        Add
+                                                        <img src="+button.png" alt="Add" className="w-7 h-6 mr-2" />
                                                     </button>
+
                                                 </div>
                                             )}
                                         </div>
@@ -163,6 +166,7 @@ export default function LoanStages() {
                                     </div>
                                 ))}
                             </div>
+
 
                             {/* Add New Template Section */}
                             <div className="mb-6 w-3/4 p-6">
