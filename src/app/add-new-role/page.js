@@ -58,7 +58,7 @@ export default function AddNewRole() {
             <LeftMenu />
 
             {/* Form Section */}
-            <div className="bg-white rounded-lg shadow-md p-8 max-w-2xl w-full mx-8">
+            <div className="bg-white rounded-lg shadow-md p-8 max-w-xl w-full mx-8">
               <div className="flex items-center mb-6">
                 <button onClick={handleBack} className="flex items-center text-gray-600 hover:text-gray-800">
                   <ArrowLeft size={20} />
