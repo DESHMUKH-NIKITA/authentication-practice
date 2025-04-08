@@ -57,7 +57,7 @@ export default function AddNewUser() {
 
               {/* Form Section */}
               <section
-                className="flex-1 bg-white shadow-lg rounded-lg p-5 border border-gray-200 h-[690px] add-new-user"
+                className="bg-white rounded-lg shadow-md p-8 max-w-xl w-full mx-8 h-[689px]"
                 //style={{ margin: '205px', height:'723px', position: 'relative', bottom: '202px', right: '192px' }}
               >
                 {/* Back button */}
