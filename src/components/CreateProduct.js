@@ -9,11 +9,33 @@ export default function CreateProduct() {
     const [step, setStep] = useState(1);
     const [productType, setProductType] = useState('Personal Loan - Secured');
     const [customerType, setCustomerType] = useState('Individual');
+    const [selectedStage, setSelectedStage] = useState('');
+    const [templateSelected, setTemplateSelected] = useState(false);
+
+    const loanStages = [
+        'Lead',
+        'Registered',
+        'Appraisal',
+        'Legal Opinion & Valuation',
+        'Pending for Approval',
+        'Approved',
+        'Disbursed',
+        'Rejected',
+    ];
+
+    const handleTemplateChange = (template) => {
+        setLoanTemplate(template);
+        if (template === 'Custom') {
+            setTemplateSelected(true); // Hide the first section
+        }
+    };
+
     const [loanTemplate, setLoanTemplate] = useState('Standard Loan Process (Default)');
     const [productName, setProductName] = useState('Product Name1');
     const [productDescription, setProductDescription] = useState(
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     );
+
 
     const handleNext = () => {
         if (step < 5) setStep(step + 1);
@@ -187,56 +209,98 @@ export default function CreateProduct() {
                     {/* Step 3: Loan Template */}
                     {step === 3 && (
                         <div>
-                            <div className="flex items-center">
-                                <button onClick={handleBack} className="mr-2">
-                                    <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-2 " />
-                                </button>
-                                <h5 className="text-lg font-semibold mb-2">Please enter the loan details</h5>
-                            </div>
-                            <div className="space-y-6">
-                                {[
-                                    {
-                                        template: 'Default',
-                                        description:
-                                            'The Default Template provides a standardized loan structure with pre-set terms and conditions, ensuring a quick and easy application process.',
-                                    },
-                                    {
-                                        template: 'Custom',
-                                        description:
-                                            'The Custom Template allows you to tailor loan terms and conditions according to specific needs, offering flexibility in structuring your loan.',
-                                    },
-                                ].map(({ template, description }) => (
-                                    <label key={template} className="block cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="productType"
-                                            value={template}
-                                            checked={loanTemplate === template}
-                                            onChange={() => setLoanTemplate(template)}
-                                            className="hidden"
-                                        />
-                                        <div className="flex items-start space-x-3">
-                                            {/* Custom Radio Button */}
-                                            <div
-                                                className={`w-5 h-5 border-2 rounded-full ${loanTemplate === template ? 'border-black' : 'border-gray-400'
-                                                    } flex items-center justify-center mt-2`}
-                                            >
-                                                {loanTemplate === template && (
-                                                    <div className="w-2.5 h-2.5 bg-black rounded-full  "></div>
-                                                )}
-                                            </div>
-                                            <span className="text-sm font-medium mt-2">{template} Template</span>
-                                            <FaInfoCircle className="inline ml-2 text-gray-400 mt-2" />
-                                        </div>
-                                        {/* Text */}
-                                        <div>
-                                            <p className="text-xs text-gray-500  px-8 mb-2 mt-2">{description}</p>
-                                        </div>
-                                    </label>
-                                ))}
-                            </div>
+                            {/* Step 1: Select Template (hidden after Custom is selected) */}
+                            {!templateSelected && (
+                                <>
+                                    <h5 className="text-lg font-semibold mb-4">
+                                        Please select the customizable loan template
+                                    </h5>
+                                    <div className="space-y-6">
+                                        {[
+                                            {
+                                                template: 'Default',
+                                                description:
+                                                    'The Default Template provides a standardized loan structure...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                                            },
+                                            {
+                                                template: 'Custom',
+                                                description:
+                                                    'TLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                                            },
+                                        ].map(({ template, description }) => (
+                                            <label key={template} className="block cursor-pointer">
+                                                <input
+                                                    type="radio"
+                                                    name="loanTemplate"
+                                                    value={template}
+                                                    onChange={() => handleTemplateChange(template)}
+                                                    className="hidden"
+                                                />
+                                                <div className="flex items-start space-x-3">
+                                                    <div
+                                                        className={`w-5 h-5 border-2 rounded-full ${loanTemplate === template
+                                                            ? 'border-black'
+                                                            : 'border-gray-400'
+                                                            } flex items-center justify-center mt-2`}
+                                                    >
+                                                        {loanTemplate === template && (
+                                                            <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                        )}
+                                                    </div>
+                                                    <span className="text-sm font-medium mt-2">
+                                                        {template} Template
+                                                    </span>
+                                                    <FaInfoCircle className="inline ml-2 text-gray-400 mt-2" />
+                                                </div>
+                                                <p className="text-xs text-gray-500 px-8 mt-1">{description}</p>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
 
+                            {/* Step 2: Show Loan Stages only if Custom Template is selected */}
+                            {templateSelected && (
+                                <div className="mt-2">
+                                    <div className="flex items-center">
+                                        <button onClick={handleBack} className="mr-3">
+                                            <img src="previous-page.png" alt="Back" className="w-7 h-6 mr-3" />
+                                        </button>
+                                        <h5 className="text-lg font-semibold mb-2 ">Please select the customizable loan template</h5>
+                                    </div>
+                                    {loanStages.map((stage) => (
+                                        <label key={stage} className="block cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="loanStage"
+                                                value={stage}
+                                                checked={selectedStage === stage}
+                                                onChange={() => setSelectedStage(stage)}
+                                                className="hidden"
+                                            />
+                                            <div className="flex items-start space-x-3">
+                                                <div
+                                                    className={`w-5 h-5 border-2 rounded-full ${selectedStage === stage
+                                                        ? 'border-black'
+                                                        : 'border-gray-400'
+                                                        } flex items-center justify-center mt-2`}
+                                                >
+                                                    {selectedStage === stage && (
+                                                        <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                                                    )}
+                                                </div>
+                                                <span className="text-sm font-medium mt-2">{stage}</span>
+                                            </div>
+                                            <p className="text-xs text-gray-500 pl-8 mb-4">
+                                                Description for {stage} stage (customize as needed)
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </label>
+                                    ))}
+                                </div>
+                            )}
                         </div>
+
                     )}
 
                     {/* Step 4: Product Details */}
@@ -376,7 +440,7 @@ export default function CreateProduct() {
                     {step < 5 ? (
                         <button onClick={handleNext} className="bg-green-500 text-white py-2 px-4 rounded-lg">Continue →</button>
                     ) : (
-                        <button className="bg-green-500 text-white py-2 px-4">Submit</button>
+                        <button className="bg-green-500 text-white py-2 px-4">Create Product</button>
                     )}
                 </div>
             </div>
