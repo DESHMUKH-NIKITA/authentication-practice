@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
+import { AlertCircle } from 'lucide-react';
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 const StatusDropdown = () => {
@@ -196,47 +197,61 @@ function ProfileContent() {
 function DocumentsContent() {
     // 📌 **Documents Table UI (Exactly as Image)**
    
-        const documents = [
-            { name: "Photograph", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
-            { name: "PAN Card", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" }
-        ];
+    const documents = [
+        { name: "Photograph", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
+        { name: "PAN Card", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" },
+        { name: "Aadhaar Card", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Address Mismatch Found", isWarning: true },
+        { name: "Salary Slip(3 Months)", uploadedOn: "21/03/2025", status: "Submitted", remarks: "Verified" },
+        { name: "Bank Statements", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" },
+        { name: "Active Bank Account", uploadedOn: "21/03/2025", status: "Pending", remarks: "Not Verified" }
+    ];
 
-        return (
-            <div className="bg-white p-6 rounded-lg ">
-                <h4 className="text-xl font-semibold mb-4">Document Submission</h4>
-                <table className="w-full border-collapse">
-                    <thead>
-                        <tr className="border-b text-left text-black-600">
-                            <th className="py-2 px-4">Document</th>
-                            <th className="py-2 px-4">Uploaded On</th>
-                            <th className="py-2 px-4">Status</th>
-                            <th className="py-2 px-4">Remarks</th>
-                            <th className="py-2 px-4 text-center">Action</th>
+    return (
+        <div className="bg-white p-6 border rounded-lg ">
+            <h4 className="text-xl font-semibold mb-4">Document Submission</h4>
+            <table className="w-full text-sm border-collapse">
+                <thead>
+                    <tr className="border rounded-lg text-gray-700 font-medium">
+                        <th className="py-3 px-4 text-left">Document</th>
+                        <th className="py-3 px-4 text-left">Uploaded On</th>
+                        <th className="py-3 px-4 text-left">Status</th>
+                        <th className="py-3 px-4 text-left">Remarks</th>
+                        <th className="py-3 px-4 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {documents.map((doc, index) => (
+                        <tr key={index} className="border text-gray-800 rounded-lg">
+                            <td className="py-3 px-4">{doc.name}</td>
+                            <td className="py-3 px-4">{doc.uploadedOn}</td>
+                            <td className="py-3 px-4">{doc.status}</td>
+                            <td className="py-3 px-4 flex items-center gap-1">
+                                {doc.isWarning && (
+                                    <AlertCircle className="text-red-500 w-4 h-4" />
+                                )}
+                                {doc.remarks}
+                            </td>
+                            <td className="py-3 px-4 text-center space-x-2">
+                                <button className="bg-blue-600 text-white text-sm px-4 py-1 rounded hover:bg-blue-700 transition">
+                                    Request Upload
+                                </button>
+                                <button className="bg-white text-sm px-4 py-1 border rounded hover:bg-gray-100 transition">
+                                    View
+                                </button>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {documents.map((doc, index) => (
-                            <tr key={index} className="border-b text-gray-700">
-                                <td className="py-3 px-4">{doc.name}</td>
-                                <td className="py-3 px-4">{doc.uploadedOn}</td>
-                                <td className="py-3 px-4">{doc.status}</td>
-                                <td className="py-3 px-4">{doc.remarks}</td>
-                                <td className="py-3 px-4 text-center">
-                                    <button className="bg-blue-500 text-white px-3 py-1 rounded mr-3">Request Upload</button>
-                                    <button className="bg-gray-200 px-3 py-1 rounded border">View</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        );
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 function TimelineContent() {
     const eventLogs = [
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "10:12",
             stage: "Application Submitted",
             inputBy: "User",
@@ -245,6 +260,7 @@ function TimelineContent() {
         },
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "17:12",
             stage: "KYC Verification",
             inputBy: "Credit Manager",
@@ -253,6 +269,7 @@ function TimelineContent() {
         },
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "17:12",
             stage: "Document Submission",
             inputBy: "User",
@@ -261,6 +278,7 @@ function TimelineContent() {
         },
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "10:12",
             stage: "Application Submitted",
             inputBy: "User",
@@ -269,6 +287,7 @@ function TimelineContent() {
         },
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "17:12",
             stage: "KYC Verification",
             inputBy: "Credit Manager",
@@ -277,6 +296,7 @@ function TimelineContent() {
         },
         {
             date: "21/03/2025",
+            leadId: "001",
             time: "17:12",
             stage: "Document Submission",
             inputBy: "User",
@@ -293,7 +313,9 @@ function TimelineContent() {
                 <table className="w-full border-collapse">
                     <thead>
                         <tr className="bg-white text-gray-700 font-semibold border rounded-lg">
+                            
                             <th className="p-3 text-left">Date</th>
+                            <th className="p-3 text-left">Lead ID</th>
                             <th className="p-3 text-left">Time</th>
                             <th className="p-3 text-left">Stage</th>
                             <th className="p-3 text-left">Input By</th>
@@ -304,7 +326,9 @@ function TimelineContent() {
                     <tbody>
                         {eventLogs.map((event, index) => (
                             <tr key={index} className="border bg-white transition rounded-lg">
+                               
                                 <td className="p-3">{event.date}</td>
+                                <td className="p-3">{event.leadId}</td>
                                 <td className="p-3">{event.time}</td>
                                 <td className="p-3">{event.stage}</td>
                                 <td className="p-3">{event.inputBy}</td>
@@ -316,9 +340,9 @@ function TimelineContent() {
                 </table>
             </div>
         </div>
-
     );
 }
+
 
 function NotesContent() {
     const [isCollapsed, setIsCollapsed] = useState(false);
