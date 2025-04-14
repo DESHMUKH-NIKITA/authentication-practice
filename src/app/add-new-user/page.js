@@ -139,7 +139,7 @@ export default function AddNewUser() {
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-gray-700 font-medium">Username</label>
+                    <label className="block text-gray-700 font-medium">Full Name</label>
                     <input
                       type="text"
                       name="username"
