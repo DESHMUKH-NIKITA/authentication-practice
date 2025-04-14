@@ -96,9 +96,50 @@ export default function CustomerLoanTabs() {
 
 function LeadsContent() {
     return (
-        <p>hello</p>
-    )
-}
+      <div className="p-6">
+        <div className="border rounded-xl bg-white shadow-sm p-4">
+          <h2 className="text-xl font-semibold mb-4">Leads Summary</h2>
+          <div className="bg-white border rounded-lg overflow-x-auto">
+            <table className="min-w-full text-sm text-left">
+              <thead className="bg-gray-100 border-b">
+                <tr>
+                  <th className="px-6 py-4 font-medium text-gray-900">Lead ID</th>
+                  <th className="px-6 py-4 font-medium text-gray-900">Product Name</th>
+                  <th className="px-6 py-4 font-medium text-gray-900">Requested Loan Amount</th>
+                  <th className="px-6 py-4 font-medium text-gray-900">Approved Loan Amount</th>
+                  <th className="px-6 py-4 font-medium text-gray-900">Status</th>
+                  <th className="px-6 py-4 font-medium text-gray-900">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  "Approved",
+                  "Registered",
+                  "Disbursed",
+                  "Rejected",
+                  "Registered",
+                  "Disbursed",
+                  "Rejected",
+                ].map((status, index) => (
+                  <tr className="border-b" key={index}>
+                    <td className="px-6 py-4 text-gray-700">1001</td>
+                    <td className="px-6 py-4 text-gray-700">Personal Loan Secured</td>
+                    <td className="px-6 py-4 text-gray-700">₹5,00,000</td>
+                    <td className="px-6 py-4 text-gray-700">₹4,00,000</td>
+                    <td className="px-6 py-4 text-gray-700">{status}</td>
+                    <td className="px-6 py-4 text-gray-600 cursor-pointer hover:underline">
+                      View Details
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
 
 function ProfileContent() {
     return (

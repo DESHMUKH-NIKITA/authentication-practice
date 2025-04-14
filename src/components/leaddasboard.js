@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FaSearch, FaUser, FaCheckCircle, FaClipboardList } from "react-icons/fa";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import Layout from "@/components/Layout";
 
 
 export default function LeadDashboard() {
@@ -23,9 +24,10 @@ export default function LeadDashboard() {
     ]);
 
     return (
-        <div className="flex">
-            <Sidebar />
-            <div className="flex-1 flex flex-col ml-64 min-h-screen">
+        <Layout>
+        <div className="flex min-h-screen">
+            {/*<Sidebar />*/}
+            <div className="flex-1 flex flex-col">
                 {/* Navbar */}
                 <div className="w-full top-0 left-0 right-0 bg-white shadow-md flex justify-between items-center px-6 py-3 h-14">
                     <h4 className="text-xl font-semibold text-gray-800">Leads Dashboard </h4>
@@ -99,5 +101,6 @@ export default function LeadDashboard() {
                 </div>
             </div>
         </div>
+        </Layout>
     );
 }

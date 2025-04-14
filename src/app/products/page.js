@@ -14,6 +14,10 @@ export default function Products() {
     router.push('/lead-dashboard'); // ✅ Redirect to the create product page
   };
 
+  const setting = () => {
+    router.push('/profile-setting'); // ✅ Redirect to the create product page
+  };
+
   return (
     <Layout>
       <div className="bg-gray-100 min-h-screen">
@@ -87,7 +91,7 @@ export default function Products() {
                   <p>Loan Stage: <span className="text-blue-600">Default Template</span></p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition">
+                  <button  onClick={setting} className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition">
                     <FaCog className="text-gray-600" />
                   </button>
                   <button onClick={handleLeadDashboard} className="bg-gray-200 font-bold px-3 py-1 rounded-lg text-sm text-gray-700 hover:bg-gray-300 transition">
