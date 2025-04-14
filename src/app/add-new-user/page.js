@@ -1,6 +1,6 @@
 'use client';
 
-import Layout from '@/components/Layout';  // ✅ Import Layout
+import Layout from '@/components/Layout';
 import LeftMenu from '@/components/LeftMenu';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -9,16 +9,12 @@ import { useState } from 'react';
 export default function AddNewUser() {
   const router = useRouter();
 
-  const handleAddUserM = () => {
-    router.push('/user-management');
-  };
-
   const [formData, setFormData] = useState({
-    fullName: '',
-    phoneNumber: '',
+    username: '',
+    phoneNo: '',
     email: '',
-    password: '',        // ✅ Added password field
-    role: ''
+    password: '',
+    role: '',
   });
 
   const handleChange = (e) => {
@@ -29,13 +25,84 @@ export default function AddNewUser() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+
+    try {
+      // Step 1: Get CSRF Token
+      let csrfRes = await fetch('/api/csrf/token', { credentials: 'include' });
+      let csrfToken =
+        csrfRes.headers.get('X-CSRF-TOKEN') ||
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('XSRF-TOKEN='))
+          ?.split('=')[1];
+
+      if (!csrfToken) throw new Error('Failed to retrieve CSRF token.');
+
+      // Step 2: Login as Admin
+      const loginRes = await fetch('/api/Auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken,
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          email: 'admin@admin.com',
+          password: 'admin',
+        }),
+      });
+
+      if (!loginRes.ok) throw new Error('Admin login failed.');
+      const { token } = await loginRes.json();
+
+      // Step 3: Get New CSRF Token After Login
+      csrfRes = await fetch('/api/csrf/token', { credentials: 'include' });
+      csrfToken =
+        csrfRes.headers.get('X-CSRF-TOKEN') ||
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('XSRF-TOKEN='))
+          ?.split('=')[1];
+
+      if (!csrfToken) throw new Error('Failed to retrieve CSRF token post-login.');
+
+      // Step 4: Register New User
+      const registerRes = await fetch('/api/Auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          'X-CSRF-TOKEN': csrfToken,
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          role: formData.role,
+          phoneNo: formData.phoneNo,
+        }),
+      });
+
+      if (!registerRes.ok) {
+        const errorData = await registerRes.json();
+        throw new Error(errorData.message || 'User registration failed.');
+      }
+
+      const responseData = await registerRes.json();
+      console.log('User registered:', responseData);
+
+      router.push('/user-management');
+    } catch (error) {
+      console.error('Error:', error.message);
+      alert(`Something went wrong: ${error.message}`);
+    }
   };
 
   return (
-    <Layout>  {/* ✅ Wrapped in Layout */}
+    <Layout>
       <div className="flex h-screen">
         <div className="flex flex-col w-full">
           {/* Navbar */}
@@ -52,40 +119,35 @@ export default function AddNewUser() {
           {/* Main Content */}
           <div className="flex-grow p-6 bg-gray-100">
             <div className="flex">
-              {/* Left Menu */}
               <LeftMenu />
 
               {/* Form Section */}
-              <section
-                className="bg-white rounded-lg shadow-md p-8 max-w-xl w-full mx-8 h-[689px]"
-                //style={{ margin: '205px', height:'723px', position: 'relative', bottom: '202px', right: '192px' }}
-              >
-                {/* Back button */}
+              <section className="bg-white rounded-lg shadow-md p-8 max-w-xl w-full mx-8 h-[689px]">
+                {/* Back Button */}
                 <div
-                  className="flex items-center text-black-600 hover:text-gray-900 cursor-pointer mb-6"
+                  className="flex items-center text-gray-600 hover:text-gray-900 cursor-pointer mb-6"
                   onClick={() => router.back()}
                 >
                   <ArrowLeft className="w-5 h-5 mr-2" />
-                  <span className="text-base font-semibold scale-120 tracking-tight ml-1.5">
-                    Add a New User
-                  </span>
+                  <span className="text-base font-semibold ml-1.5">Add a New User</span>
                 </div>
 
                 <p className="text-gray-500 mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Fill in the details below to add a new user to the system.
                 </p>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-gray-700 font-medium">Full Name</label>
+                    <label className="block text-gray-700 font-medium">Username</label>
                     <input
                       type="text"
-                      name="fullName"
-                      value={formData.fullName}
+                      name="username"
+                      value={formData.username}
                       onChange={handleChange}
                       placeholder="John Doe"
                       className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     />
                   </div>
 
@@ -93,11 +155,12 @@ export default function AddNewUser() {
                     <label className="block text-gray-700 font-medium">Phone Number</label>
                     <input
                       type="text"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
+                      name="phoneNo"
+                      value={formData.phoneNo}
                       onChange={handleChange}
                       placeholder="1234567890"
                       className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     />
                   </div>
 
@@ -110,10 +173,10 @@ export default function AddNewUser() {
                       onChange={handleChange}
                       placeholder="email@example.com"
                       className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     />
                   </div>
 
-                  {/* ✅ Added Password Field */}
                   <div>
                     <label className="block text-gray-700 font-medium">Password</label>
                     <input
@@ -123,6 +186,7 @@ export default function AddNewUser() {
                       onChange={handleChange}
                       placeholder="Enter password"
                       className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     />
                   </div>
 
@@ -135,15 +199,14 @@ export default function AddNewUser() {
                       onChange={handleChange}
                       placeholder="Administrator"
                       className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     />
                   </div>
 
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      onClick={handleAddUserM}
                       className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition"
-                      style={{borderRadius:'10px'}}
                     >
                       Add New User
                     </button>
