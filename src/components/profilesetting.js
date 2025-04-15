@@ -2,12 +2,15 @@
 
 import Sidebar from "@/components/Sidebar";
 import Layout from "@/components/Layout";
+import { useRouter } from 'next/navigation'; // <-- App Router
 
 export default function TopNavbarWithLayout() {
+  const router = useRouter();
   const cards = [
     {
       title: "Source Links",
       description: "Configure custom links for user-initiated actions and interactions.",
+      path: "/source-link-page",
     },
     {
       title: "Roles",
@@ -74,9 +77,14 @@ export default function TopNavbarWithLayout() {
                   <p className="text-sm text-gray-600 flex-1">{card.description}</p>
                   <hr className="w-full border-t border-gray-200 my-4" />
 
-                  <div className="-mt-2">
-                    <a href="#" className="text-blue-500 text-sm font-medium hover:underline ml-75 ">View</a>
-                  </div>
+                  <div className="-mt-2 flex justify-end" >
+                <button
+                  onClick={() => router.push(card.path)}
+                  className="text-blue-500 text-sm font-medium hover:underline"
+                >
+                  View
+                </button>
+              </div>
                 </div>
               ))}
             </div>
