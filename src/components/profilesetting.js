@@ -15,6 +15,7 @@ export default function TopNavbarWithLayout() {
     {
       title: "Roles",
       description: "Create and manage user roles to regulate permissions and responsibilities.",
+      path: "/role",
     },
     {
       title: "Access",
