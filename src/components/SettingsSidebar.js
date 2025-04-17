@@ -15,7 +15,7 @@ export default function LeftMenu() {
   const menuItems = [
     { name: 'Source Links', path: '/source-link-page' },
     { name: 'Roles', path: '/role' },
-    { name: 'Access', path: '/access' },
+    { name: 'Access', path: '/AccessManagement' },
     { name: 'Offer Settings', path: '/offer-settings' },
     { name: 'Sanction Letter', path: '/sanction-letter' },
     { name: 'Loan Agreement', path: '/loan-agreement' },
