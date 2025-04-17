@@ -35,7 +35,7 @@ export default function SourceLinksPage() {
 
         {/* Main Content */}
         <div className="flex-1 bg-gray-50 p-6">
-          <Link href="/lead-dashboard" className="inline-flex items-center text-blue-600 text-sm mb-4 hover:underline">
+          <Link href="/lead-dashboard" className="inline-flex items-center text-blue-600 text-sm mb-4 !no-underline">
             <ArrowLeft className="w-4 h-4 mr-1" /> Back to Leads
           </Link>
 

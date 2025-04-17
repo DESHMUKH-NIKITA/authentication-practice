@@ -20,10 +20,12 @@ export default function TopNavbarWithLayout() {
     {
       title: "Access",
       description: "Control access based on loan templates and stages.",
+      path: "/AccessManagement",
     },
     {
       title: "Offer Settings",
       description: "Configure ROI, tenure, and loan amount limits.",
+      path: "/offer-settings",
     },
     {
       title: "Sanction Letter",
