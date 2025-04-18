@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
+import SettingsSidebar from "@/components/SettingsSidebar";
 
 export default function LeftMenu() {
   const router = useRouter();

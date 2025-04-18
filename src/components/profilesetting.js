@@ -15,6 +15,7 @@ export default function TopNavbarWithLayout() {
     {
       title: "Roles",
       description: "Create and manage user roles to regulate permissions and responsibilities.",
+      path: "/role",
     },
     {
       title: "Access",
@@ -29,10 +30,12 @@ export default function TopNavbarWithLayout() {
     {
       title: "Sanction Letter",
       description: "Upload and manage sample sanction letter templates.",
+      path: "/sanction-letter",
     },
     {
       title: "Loan Agreement",
       description: "Upload and manage sample loan agreement templates.",
+      path:"/loan-agreement"
     },
     {
       title: "BRE Checks",
