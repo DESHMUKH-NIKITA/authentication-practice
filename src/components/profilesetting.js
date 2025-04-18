@@ -30,6 +30,7 @@ export default function TopNavbarWithLayout() {
     {
       title: "Sanction Letter",
       description: "Upload and manage sample sanction letter templates.",
+      path: "/sanction-letter",
     },
     {
       title: "Loan Agreement",
