@@ -35,6 +35,7 @@ export default function TopNavbarWithLayout() {
     {
       title: "Loan Agreement",
       description: "Upload and manage sample loan agreement templates.",
+      path:"/loan-agreement"
     },
     {
       title: "BRE Checks",

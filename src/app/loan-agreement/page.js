@@ -37,7 +37,7 @@ export default function FileUploadScreen() {
       {/* Top Navbar */}
       <div className="w-full h-16 bg-white flex items-center justify-between px-6 shadow-md">
         <h5 className="text-sm font-semibold text-gray-800">
-          Product &gt; Settings &gt; Sanction Letter
+          Product &gt; Settings &gt; Loan Agreement
         </h5>
         <div className="flex items-center gap-2">
           <img src="/Username.png" alt="User Icon" className="w-9 h-9 rounded-full" />
@@ -62,7 +62,7 @@ export default function FileUploadScreen() {
 
           {/* Title */}
           <h1 className="text-xs font-semibold text-gray-800" style={{ fontSize: '25px' }}>
-            Sanction Letter
+          Loan Agreement
           </h1>
 
           {/* File Upload Box */}
